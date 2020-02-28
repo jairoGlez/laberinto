@@ -1,6 +1,6 @@
 ﻿namespace laberinto
 {
-    partial class Form1
+    partial class Form_Incio
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -28,34 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_SeleccionarArchivo = new System.Windows.Forms.Button();
+            this.Label_VamosaJugar = new System.Windows.Forms.Label();
+            this.label_HazSeleccionado = new System.Windows.Forms.Label();
+            this.btn_Cargar = new System.Windows.Forms.Button();
+            this.label_NombreArchivo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_SeleccionarArchivo
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(310, 128);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 42);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Seleccionar Archivo";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_SeleccionarArchivo.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_SeleccionarArchivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_SeleccionarArchivo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_SeleccionarArchivo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_SeleccionarArchivo.Location = new System.Drawing.Point(288, 157);
+            this.btn_SeleccionarArchivo.Name = "btn_SeleccionarArchivo";
+            this.btn_SeleccionarArchivo.Size = new System.Drawing.Size(200, 42);
+            this.btn_SeleccionarArchivo.TabIndex = 0;
+            this.btn_SeleccionarArchivo.Text = "Seleccionar Archivo";
+            this.btn_SeleccionarArchivo.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // Label_VamosaJugar
+            // 
+            this.Label_VamosaJugar.AutoSize = true;
+            this.Label_VamosaJugar.Font = new System.Drawing.Font("Segoe Print", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_VamosaJugar.Location = new System.Drawing.Point(242, 19);
+            this.Label_VamosaJugar.Name = "Label_VamosaJugar";
+            this.Label_VamosaJugar.Size = new System.Drawing.Size(312, 62);
+            this.Label_VamosaJugar.TabIndex = 1;
+            this.Label_VamosaJugar.Text = "Vamos a Jugar!!";
+            // 
+            // label_HazSeleccionado
+            // 
+            this.label_HazSeleccionado.AutoSize = true;
+            this.label_HazSeleccionado.Font = new System.Drawing.Font("Segoe Print", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_HazSeleccionado.Location = new System.Drawing.Point(64, 338);
+            this.label_HazSeleccionado.Name = "label_HazSeleccionado";
+            this.label_HazSeleccionado.Size = new System.Drawing.Size(210, 36);
+            this.label_HazSeleccionado.TabIndex = 2;
+            this.label_HazSeleccionado.Text = "Haz Seleccionado: ";
+            // 
+            // btn_Cargar
+            // 
+            this.btn_Cargar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btn_Cargar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_Cargar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btn_Cargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cargar.Location = new System.Drawing.Point(571, 332);
+            this.btn_Cargar.Name = "btn_Cargar";
+            this.btn_Cargar.Size = new System.Drawing.Size(95, 42);
+            this.btn_Cargar.TabIndex = 3;
+            this.btn_Cargar.Text = "Cargar";
+            this.btn_Cargar.UseVisualStyleBackColor = false;
+            // 
+            // label_NombreArchivo
+            // 
+            this.label_NombreArchivo.AutoSize = true;
+            this.label_NombreArchivo.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_NombreArchivo.Location = new System.Drawing.Point(280, 344);
+            this.label_NombreArchivo.Name = "label_NombreArchivo";
+            this.label_NombreArchivo.Size = new System.Drawing.Size(180, 28);
+            this.label_NombreArchivo.TabIndex = 4;
+            this.label_NombreArchivo.Text = "Nombre Archivo ........";
+            // 
+            // Form_Incio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Controls.Add(this.label_NombreArchivo);
+            this.Controls.Add(this.btn_Cargar);
+            this.Controls.Add(this.label_HazSeleccionado);
+            this.Controls.Add(this.Label_VamosaJugar);
+            this.Controls.Add(this.btn_SeleccionarArchivo);
+            this.Name = "Form_Incio";
+            this.Text = "Inicio";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_SeleccionarArchivo;
+        private System.Windows.Forms.Label Label_VamosaJugar;
+        private System.Windows.Forms.Label label_HazSeleccionado;
+        private System.Windows.Forms.Button btn_Cargar;
+        private System.Windows.Forms.Label label_NombreArchivo;
     }
 }
 

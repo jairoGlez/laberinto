@@ -13,7 +13,7 @@ namespace laberinto
         string[] coordenadas;
         string tipo;
     }
-    class Personaje
+    class Form_Personaje
     {
 
     }
