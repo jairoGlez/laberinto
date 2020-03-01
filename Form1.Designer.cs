@@ -1,6 +1,6 @@
 ﻿namespace laberinto
 {
-    partial class Form_Incio
+    partial class Form_Inicio
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -47,6 +47,7 @@
             this.btn_SeleccionarArchivo.TabIndex = 0;
             this.btn_SeleccionarArchivo.Text = "Seleccionar Archivo";
             this.btn_SeleccionarArchivo.UseVisualStyleBackColor = false;
+            this.btn_SeleccionarArchivo.Click += new System.EventHandler(this.btn_SeleccionarArchivo_Click);
             // 
             // Label_VamosaJugar
             // 
@@ -72,6 +73,7 @@
             // 
             this.btn_Cargar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_Cargar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_Cargar.Enabled = false;
             this.btn_Cargar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_Cargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Cargar.Location = new System.Drawing.Point(571, 332);
@@ -80,6 +82,7 @@
             this.btn_Cargar.TabIndex = 3;
             this.btn_Cargar.Text = "Cargar";
             this.btn_Cargar.UseVisualStyleBackColor = false;
+            this.btn_Cargar.Click += new System.EventHandler(this.btn_Cargar_Click);
             // 
             // label_NombreArchivo
             // 
@@ -91,7 +94,7 @@
             this.label_NombreArchivo.TabIndex = 4;
             this.label_NombreArchivo.Text = "Nombre Archivo ........";
             // 
-            // Form_Incio
+            // Form_Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -101,7 +104,7 @@
             this.Controls.Add(this.label_HazSeleccionado);
             this.Controls.Add(this.Label_VamosaJugar);
             this.Controls.Add(this.btn_SeleccionarArchivo);
-            this.Name = "Form_Incio";
+            this.Name = "Form_Inicio";
             this.Text = "Inicio";
             this.ResumeLayout(false);
             this.PerformLayout();
