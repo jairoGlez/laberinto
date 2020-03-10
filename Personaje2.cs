@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace laberinto
 {
-    public partial class Form4 : Form
+    public partial class Formulario_Personaje2 : Form
     {
-        public Form4()
+        public Formulario_Personaje2()
         {
             InitializeComponent();
         }
+
     }
 }

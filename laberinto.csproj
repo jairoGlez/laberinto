@@ -47,44 +47,89 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clases.cs" />
+    <Compile Include="Personaje1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personaje1.Designer.cs">
+      <DependentUpon>Personaje1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personaje2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personaje2.Designer.cs">
+      <DependentUpon>Personaje2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personaje3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personaje3.Designer.cs">
+      <DependentUpon>Personaje3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personaje4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personaje4.Designer.cs">
+      <DependentUpon>Personaje4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personaje5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personaje5.Designer.cs">
+      <DependentUpon>Personaje5.cs</DependentUpon>
+    </Compile>
     <Compile Include="utilidades.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="Configuracion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="Configuracion.Designer.cs">
+      <DependentUpon>Configuracion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="Personajes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="Personajes.Designer.cs">
+      <DependentUpon>Personajes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form4.cs">
+    <Compile Include="Juego.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form4.Designer.cs">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <Compile Include="Juego.Designer.cs">
+      <DependentUpon>Juego.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="Configuracion.resx">
+      <DependentUpon>Configuracion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="Personaje3.resx">
+      <DependentUpon>Personaje3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <EmbeddedResource Include="Personaje4.resx">
+      <DependentUpon>Personaje4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personaje5.resx">
+      <DependentUpon>Personaje5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personajes.resx">
+      <DependentUpon>Personajes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Juego.resx">
+      <DependentUpon>Juego.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personaje1.resx">
+      <DependentUpon>Personaje1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personaje2.resx">
+      <DependentUpon>Personaje2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

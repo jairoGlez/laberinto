@@ -55,8 +55,12 @@ namespace laberinto
 
         private void btn_Cargar_Click(object sender, EventArgs e)
         {
-            filas = utilidades.leer_archivo(ruta_del_archivo);
-            Application.Exit();
+           // filas = utilidades.leer_archivo(ruta_del_archivo);
+           // Application.Exit();
+
+            Form form = new Form_Configuracion();
+            form.Show();
         }
+
     }
 }
