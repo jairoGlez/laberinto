@@ -65,13 +65,13 @@
             // personajeToolStripMenuItem
             // 
             this.personajeToolStripMenuItem.Name = "personajeToolStripMenuItem";
-            this.personajeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.personajeToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.personajeToolStripMenuItem.Text = "Personaje";
             // 
             // terrenoToolStripMenuItem
             // 
             this.terrenoToolStripMenuItem.Name = "terrenoToolStripMenuItem";
-            this.terrenoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.terrenoToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.terrenoToolStripMenuItem.Text = "Terreno";
             // 
             // Formulario_Juego
@@ -83,6 +83,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Formulario_Juego";
             this.Text = "Juego";
+            this.Shown += new System.EventHandler(this.Formulario_Juego_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

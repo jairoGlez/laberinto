@@ -17,18 +17,8 @@ namespace laberinto
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            var filas = new List<string[]>();
-            var ventana_1 = new Form_Inicio();
-
-            Application.Run(ventana_1);
-
-            filas = ventana_1.filas_leidas();
-            ventana_1.Dispose();
-
-            Console.WriteLine("leido {0}", filas);
-/*
-            var tablero = new Tablero(filas);*/
+            var ventana_principal = new Formulario_Juego();
+            Application.Run(ventana_principal);
         }
     }
 }

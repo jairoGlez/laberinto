@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace laberinto
 {
-    class utilidades
+    class Utilidades
     {
         public static void mensaje_de_error(string mensaje)
         {
@@ -76,7 +76,7 @@ namespace laberinto
                     j = 1;
                     lineas_parseadas.Add(codigos);
                 }
-                lineas_parseadas.Prepend(tipos_de_codigo.ToArray());
+                lineas_parseadas.Insert(0, tipos_de_codigo.ToArray());
             }
             return lineas_parseadas;
         }

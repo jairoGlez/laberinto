@@ -59,8 +59,7 @@ namespace laberinto
 
         private void btn_SiguientePersonaje_Click(object sender, EventArgs e)
         {
-            Form form = new Formulario_Juego();
-            form.Show();
+            this.ParentForm.Close();
         }
 
         private void cargar_num_personajes()
