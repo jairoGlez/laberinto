@@ -1,6 +1,6 @@
 ﻿namespace laberinto
 {
-    partial class Form_Personaje
+    partial class Configurador_personajes
     {
         /// <summary>
         /// Required designer variable.
@@ -32,12 +32,9 @@
             this.btn_SiguientePersonaje = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.CB_Num_Personajes = new System.Windows.Forms.ComboBox();
-            this.btn_personaje1 = new System.Windows.Forms.Button();
-            this.btn_personaje2 = new System.Windows.Forms.Button();
-            this.btn_personaje4 = new System.Windows.Forms.Button();
-            this.btn_personaje3 = new System.Windows.Forms.Button();
-            this.btn_personaje5 = new System.Windows.Forms.Button();
             this.panel_contenedor_personajes = new System.Windows.Forms.Panel();
+            this.boton_guardar_personaje = new System.Windows.Forms.Button();
+            this.contenedor_botones = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // Label_ConfiguracionTerreno
@@ -54,9 +51,10 @@
             // 
             this.btn_SiguientePersonaje.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_SiguientePersonaje.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_SiguientePersonaje.Enabled = false;
             this.btn_SiguientePersonaje.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_SiguientePersonaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SiguientePersonaje.Location = new System.Drawing.Point(981, 457);
+            this.btn_SiguientePersonaje.Location = new System.Drawing.Point(987, 444);
             this.btn_SiguientePersonaje.Name = "btn_SiguientePersonaje";
             this.btn_SiguientePersonaje.Size = new System.Drawing.Size(103, 37);
             this.btn_SiguientePersonaje.TabIndex = 5;
@@ -83,101 +81,51 @@
             this.CB_Num_Personajes.Name = "CB_Num_Personajes";
             this.CB_Num_Personajes.Size = new System.Drawing.Size(80, 26);
             this.CB_Num_Personajes.TabIndex = 7;
-            // 
-            // btn_personaje1
-            // 
-            this.btn_personaje1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_personaje1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_personaje1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_personaje1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_personaje1.Location = new System.Drawing.Point(12, 130);
-            this.btn_personaje1.Name = "btn_personaje1";
-            this.btn_personaje1.Size = new System.Drawing.Size(103, 37);
-            this.btn_personaje1.TabIndex = 8;
-            this.btn_personaje1.Text = "Personaje 1";
-            this.btn_personaje1.UseVisualStyleBackColor = false;
-            this.btn_personaje1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btn_personaje2
-            // 
-            this.btn_personaje2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_personaje2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_personaje2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_personaje2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_personaje2.Location = new System.Drawing.Point(12, 187);
-            this.btn_personaje2.Name = "btn_personaje2";
-            this.btn_personaje2.Size = new System.Drawing.Size(103, 37);
-            this.btn_personaje2.TabIndex = 9;
-            this.btn_personaje2.Text = "Personaje 2";
-            this.btn_personaje2.UseVisualStyleBackColor = false;
-            this.btn_personaje2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btn_personaje4
-            // 
-            this.btn_personaje4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_personaje4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_personaje4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_personaje4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_personaje4.Location = new System.Drawing.Point(12, 297);
-            this.btn_personaje4.Name = "btn_personaje4";
-            this.btn_personaje4.Size = new System.Drawing.Size(103, 37);
-            this.btn_personaje4.TabIndex = 10;
-            this.btn_personaje4.Text = "Personaje 4";
-            this.btn_personaje4.UseVisualStyleBackColor = false;
-            this.btn_personaje4.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // btn_personaje3
-            // 
-            this.btn_personaje3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_personaje3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_personaje3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_personaje3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_personaje3.Location = new System.Drawing.Point(12, 241);
-            this.btn_personaje3.Name = "btn_personaje3";
-            this.btn_personaje3.Size = new System.Drawing.Size(103, 37);
-            this.btn_personaje3.TabIndex = 11;
-            this.btn_personaje3.Text = "Personaje 3";
-            this.btn_personaje3.UseVisualStyleBackColor = false;
-            this.btn_personaje3.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // btn_personaje5
-            // 
-            this.btn_personaje5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_personaje5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_personaje5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btn_personaje5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_personaje5.Location = new System.Drawing.Point(12, 350);
-            this.btn_personaje5.Name = "btn_personaje5";
-            this.btn_personaje5.Size = new System.Drawing.Size(103, 37);
-            this.btn_personaje5.TabIndex = 12;
-            this.btn_personaje5.Text = "Personaje 5";
-            this.btn_personaje5.UseVisualStyleBackColor = false;
-            this.btn_personaje5.Click += new System.EventHandler(this.button5_Click);
+            this.CB_Num_Personajes.SelectionChangeCommitted += new System.EventHandler(this.CB_Num_Personajes_SelectionChangeCommitted_1);
             // 
             // panel_contenedor_personajes
             // 
             this.panel_contenedor_personajes.Location = new System.Drawing.Point(140, 99);
             this.panel_contenedor_personajes.Name = "panel_contenedor_personajes";
-            this.panel_contenedor_personajes.Size = new System.Drawing.Size(835, 414);
+            this.panel_contenedor_personajes.Size = new System.Drawing.Size(835, 335);
             this.panel_contenedor_personajes.TabIndex = 13;
             // 
-            // Form_Personaje
+            // boton_guardar_personaje
+            // 
+            this.boton_guardar_personaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.boton_guardar_personaje.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.boton_guardar_personaje.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.boton_guardar_personaje.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.boton_guardar_personaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.boton_guardar_personaje.Location = new System.Drawing.Point(494, 465);
+            this.boton_guardar_personaje.Name = "boton_guardar_personaje";
+            this.boton_guardar_personaje.Size = new System.Drawing.Size(109, 37);
+            this.boton_guardar_personaje.TabIndex = 14;
+            this.boton_guardar_personaje.Text = "Guardar";
+            this.boton_guardar_personaje.UseVisualStyleBackColor = false;
+            this.boton_guardar_personaje.Click += new System.EventHandler(this.boton_guardar_personaje_Click);
+            // 
+            // contenedor_botones
+            // 
+            this.contenedor_botones.Location = new System.Drawing.Point(7, 99);
+            this.contenedor_botones.Name = "contenedor_botones";
+            this.contenedor_botones.Size = new System.Drawing.Size(133, 334);
+            this.contenedor_botones.TabIndex = 15;
+            // 
+            // Configurador_personajes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1121, 514);
+            this.Controls.Add(this.contenedor_botones);
+            this.Controls.Add(this.boton_guardar_personaje);
             this.Controls.Add(this.panel_contenedor_personajes);
-            this.Controls.Add(this.btn_personaje5);
-            this.Controls.Add(this.btn_personaje3);
-            this.Controls.Add(this.btn_personaje4);
-            this.Controls.Add(this.btn_personaje2);
-            this.Controls.Add(this.btn_personaje1);
             this.Controls.Add(this.CB_Num_Personajes);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_SiguientePersonaje);
             this.Controls.Add(this.Label_ConfiguracionTerreno);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form_Personaje";
+            this.Name = "Configurador_personajes";
             this.Text = "Personaje";
             this.Load += new System.EventHandler(this.Form_Personaje_Load);
             this.ResumeLayout(false);
@@ -191,11 +139,8 @@
         private System.Windows.Forms.Button btn_SiguientePersonaje;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox CB_Num_Personajes;
-        private System.Windows.Forms.Button btn_personaje1;
-        private System.Windows.Forms.Button btn_personaje2;
-        private System.Windows.Forms.Button btn_personaje4;
-        private System.Windows.Forms.Button btn_personaje3;
-        private System.Windows.Forms.Button btn_personaje5;
         private System.Windows.Forms.Panel panel_contenedor_personajes;
+        private System.Windows.Forms.Button boton_guardar_personaje;
+        private System.Windows.Forms.Panel contenedor_botones;
     }
 }

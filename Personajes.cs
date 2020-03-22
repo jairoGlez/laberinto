@@ -10,51 +10,29 @@ using System.Windows.Forms;
 
 namespace laberinto
 {
-    public partial class Form_Personaje : Form
+    public partial class Configurador_personajes : Form
     {
-        public Form_Personaje()
+        Formulario_Personaje form_personaje;
+        Personaje[] personajes;
+        int personaje_seleccionado;
+
+        public Configurador_personajes(Textura[] texturas)
         {
             InitializeComponent();
+            form_personaje = new Formulario_Personaje(texturas);
+            form_personaje.TopLevel = false;
+            form_personaje.Dock = DockStyle.Fill;
         }
 
-        private void abrirformulariohijo(object formhijo)
+        private void abrir_formulario_personaje()
         {
             if (this.panel_contenedor_personajes.Controls.Count > 0)
             {
                 this.panel_contenedor_personajes.Controls.RemoveAt(0);
             }
-
-            Form fh = formhijo as Form;
-            fh.TopLevel = false;
-            fh.Dock = DockStyle.Fill;
-            this.panel_contenedor_personajes.Controls.Add(fh);
-            this.panel_contenedor_personajes.Tag = fh;
-            fh.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            abrirformulariohijo(new Formulario_Personaje1());
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            abrirformulariohijo(new Formulario_Personaje2());
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            abrirformulariohijo(new Formulario_Personaje3());
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            abrirformulariohijo(new Formulario_Personaje4());
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            abrirformulariohijo(new Formulario_Personaje5());
+            this.panel_contenedor_personajes.Controls.Add(form_personaje);
+            this.panel_contenedor_personajes.Tag = form_personaje;
+            form_personaje.Show();
         }
 
         private void btn_SiguientePersonaje_Click(object sender, EventArgs e)
@@ -70,14 +48,68 @@ namespace laberinto
             {
                 this.CB_Num_Personajes.Items.Add(y);
                 y++;
-
             }
-
         }
 
         private void Form_Personaje_Load(object sender, EventArgs e)
         {
             cargar_num_personajes();
+        }
+
+        private void colocar_botones()
+        {
+            var botones = contenedor_botones.Controls.OfType<Button>();
+            var cantidad_botones_viejos = botones.Count();
+            var cantidad = int.Parse(CB_Num_Personajes.SelectedItem.ToString());
+            var posicion_horizontal = 12;
+            var posicion_vertical = 0;
+            var limite_de_copiado = cantidad > cantidad_botones_viejos ? cantidad_botones_viejos : cantidad;
+            Button boton;
+            Personaje[] nueva_lista_personajes = new Personaje[cantidad];
+            for (int i = 0; i < cantidad_botones_viejos; i++)
+            {
+                contenedor_botones.Controls.Remove(botones.First());
+            }
+            
+            for(int i = 0; i < cantidad; i++)
+            {
+                boton = new Button()
+                {
+                    Name = (i + 1).ToString(),
+                    Text = "Personaje " + (i + 1).ToString(),
+                    Size = new Size(103,37),
+                    Location = new Point(posicion_horizontal, posicion_vertical)
+                };
+                boton.Click += new System.EventHandler(boton_personaje_click);
+                contenedor_botones.Controls.Add(boton);
+                posicion_vertical += 50;
+            }
+
+            if (limite_de_copiado != 0)
+            {
+                for (int i = 0; i < limite_de_copiado; i++)
+                {
+                    nueva_lista_personajes[i] = personajes[i];
+                }
+            }
+            personajes = nueva_lista_personajes;
+        }
+
+        private void boton_personaje_click(object sender, EventArgs e)
+        {
+            var boton = sender as Button;
+            personaje_seleccionado = int.Parse(boton.Name);
+            abrir_formulario_personaje();
+        }
+
+        private void CB_Num_Personajes_SelectionChangeCommitted_1(object sender, EventArgs e)
+        {
+            colocar_botones();
+        }
+
+        private void boton_guardar_personaje_Click(object sender, EventArgs e)
+        {
+            //todo
         }
     }
 }

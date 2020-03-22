@@ -21,9 +21,8 @@ namespace laberinto
     }
     class Personaje
     {
-        private string nombre;
-        private string skin;
-        private Dictionary<string, decimal> costos;
+        private string avatar;
+        private Dictionary<Textura, decimal> costos;
     }
     class Tablero
     {
@@ -62,6 +61,17 @@ namespace laberinto
             }
             dimensiones.Add("filas", i);
             dimensiones.Add("columnas", j);
+        }
+    }
+    public class Textura
+    {
+        public string ruta;
+        public string nombre;
+
+        public Textura(string ruta, string nombre)
+        {
+            this.ruta = ruta;
+            this.nombre = nombre;
         }
     }
 }

@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,35 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clases.cs" />
-    <Compile Include="Personaje1.cs">
+    <Compile Include="Personaje.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Personaje1.Designer.cs">
-      <DependentUpon>Personaje1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Personaje2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Personaje2.Designer.cs">
-      <DependentUpon>Personaje2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Personaje3.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Personaje3.Designer.cs">
-      <DependentUpon>Personaje3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Personaje4.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Personaje4.Designer.cs">
-      <DependentUpon>Personaje4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Personaje5.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Personaje5.Designer.cs">
-      <DependentUpon>Personaje5.cs</DependentUpon>
+    <Compile Include="Personaje.Designer.cs">
+      <DependentUpon>Personaje.cs</DependentUpon>
     </Compile>
     <Compile Include="utilidades.cs" />
     <Compile Include="Inicio.cs">
@@ -110,26 +101,14 @@
     <EmbeddedResource Include="Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Personaje3.resx">
-      <DependentUpon>Personaje3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Personaje4.resx">
-      <DependentUpon>Personaje4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Personaje5.resx">
-      <DependentUpon>Personaje5.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Personajes.resx">
       <DependentUpon>Personajes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Juego.resx">
       <DependentUpon>Juego.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Personaje1.resx">
-      <DependentUpon>Personaje1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Personaje2.resx">
-      <DependentUpon>Personaje2.cs</DependentUpon>
+    <EmbeddedResource Include="Personaje.resx">
+      <DependentUpon>Personaje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -139,6 +118,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -152,6 +132,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="medios\Texturas\Agua.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="medios\Texturas\Camino.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
