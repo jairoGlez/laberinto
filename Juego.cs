@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace laberinto
 {
@@ -49,6 +50,30 @@ namespace laberinto
             }
             this.tablero = new Tablero(filas);
             mostrar_ventana_configuracion();
+        }
+
+        private void personajeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           // confi conf = new Configurador_personajes(); 
+           // conf_pers.Show();
+        }
+
+        private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+          //  Form_Configuracion conf = new Form_Configuracion();
+          //  conf.Show();
+
+        }
+
+        
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -111,7 +111,7 @@
             this.ClientSize = new System.Drawing.Size(1107, 513);
             this.Controls.Add(this.panel_contenedor);
             this.Name = "Form_Configuracion";
-            this.Text = "Terreno";
+            this.Text = "Configuración";
             this.panel_contenedor.ResumeLayout(false);
             this.panel_contenedor.PerformLayout();
             this.panel3.ResumeLayout(false);
