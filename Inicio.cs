@@ -12,13 +12,13 @@ namespace laberinto
 {
     public partial class Form_Inicio : Form
     {
-        private OpenFileDialog ventana_archivo;
+        private OpenFileDialog buscador_de_archivo;
         private string ruta_del_archivo;
         private List<string[]> filas;
         public Form_Inicio()
         {
             InitializeComponent();
-            ventana_archivo = new OpenFileDialog()
+            buscador_de_archivo = new OpenFileDialog()
             {
                 Filter = "Text files (*.txt)|*.txt",
                 Title = "Selecciona el archivo del Mapa"
@@ -31,12 +31,12 @@ namespace laberinto
         }
         private void btn_SeleccionarArchivo_Click(object sender, EventArgs e)
         {
-            if (ventana_archivo.ShowDialog() == DialogResult.OK)
+            if (buscador_de_archivo.ShowDialog() == DialogResult.OK)
             {   
                 try
                 {
-                    ruta_del_archivo = ventana_archivo.FileName;
-                    label_NombreArchivo.Text = ventana_archivo.SafeFileName;
+                    ruta_del_archivo = buscador_de_archivo.FileName;
+                    label_NombreArchivo.Text = buscador_de_archivo.SafeFileName;
                     if (ruta_del_archivo != "")
                     {
                         this.btn_Cargar.Enabled = true;
@@ -48,18 +48,15 @@ namespace laberinto
                 }
                 catch(Exception exc)
                 {
-                    utilidades.mensaje_de_error(exc.Message);
+                    Utilidades.mensaje_de_error(exc.Message);
                 }
             }
         }
 
         private void btn_Cargar_Click(object sender, EventArgs e)
         {
-           // filas = utilidades.leer_archivo(ruta_del_archivo);
-           // Application.Exit();
-
-            Form form = new Form_Configuracion();
-            form.Show();
+            filas = Utilidades.leer_archivo(ruta_del_archivo);
+            this.Close();
         }
 
     }
