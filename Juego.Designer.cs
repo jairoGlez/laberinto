@@ -47,6 +47,7 @@
             this.comboFilaD = new System.Windows.Forms.ComboBox();
             this.comboColumnaO = new System.Windows.Forms.ComboBox();
             this.comboFilaO = new System.Windows.Forms.ComboBox();
+            this.mapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -73,7 +74,8 @@
             // 
             this.configuraciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.personajeToolStripMenuItem,
-            this.terrenoToolStripMenuItem});
+            this.terrenoToolStripMenuItem,
+            this.mapaToolStripMenuItem});
             this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
             this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.configuraciónToolStripMenuItem.Text = "Configuración";
@@ -254,6 +256,13 @@
             this.comboFilaO.TabIndex = 17;
             this.comboFilaO.SelectedIndexChanged += new System.EventHandler(this.comboFilaO_SelectedIndexChanged);
             // 
+            // mapaToolStripMenuItem
+            // 
+            this.mapaToolStripMenuItem.Name = "mapaToolStripMenuItem";
+            this.mapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mapaToolStripMenuItem.Text = "Mapa";
+            this.mapaToolStripMenuItem.Click += new System.EventHandler(this.mapaToolStripMenuItem_Click);
+            // 
             // Formulario_Juego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,5 +311,6 @@
         private System.Windows.Forms.ComboBox comboFilaD;
         private System.Windows.Forms.ComboBox comboColumnaO;
         private System.Windows.Forms.ComboBox comboFilaO;
+        private System.Windows.Forms.ToolStripMenuItem mapaToolStripMenuItem;
     }
 }
