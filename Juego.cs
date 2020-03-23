@@ -81,7 +81,6 @@ namespace laberinto
             visita = 1;
             verificar_victoria();
         }
-
         private void bloquear_controles()
         {
             var controles = panel1.Controls;
@@ -123,7 +122,14 @@ namespace laberinto
                 for (int j = 1; j <= cant_columnas; j++)
                 {
                     t = tablero.texturaPorCoordenadas(i - 1, j - 1);
-                    tabla.Controls.Add(new Label() { Text = "", BackColor = Color.Transparent,Tag = t,TextAlign = ContentAlignment.TopLeft, Dock = DockStyle.Fill }, j, i);
+                    var l = new Label() { Text = "", BackColor = Color.Transparent, Tag = t, TextAlign = ContentAlignment.TopLeft, Dock = DockStyle.Fill };
+                    var info = new ToolTip();
+                    info.AutoPopDelay = 5000;
+                    info.InitialDelay = 1000;
+                    info.ReshowDelay = 500;
+                    info.ShowAlways = true;
+                    info.SetToolTip(l, string.Format("Codigo: {0} Textura: {1}", tablero.casillaPorCoordenadas(i - 1, j - 1).tipo, t.nombre));
+                    tabla.Controls.Add(l, j, i);
                 }
             }
             tabla.ResumeLayout();
@@ -354,6 +360,7 @@ namespace laberinto
             if(tablero.coordenadas_personaje["fila"] == tablero.coordenadas_fin["fila"] && tablero.coordenadas_personaje["columna"] == tablero.coordenadas_fin["columna"])
             {
                 MessageBox.Show("Victoria!");
+                borrar_inicio();
                 desbloquear_controles();
             }
         }
@@ -362,7 +369,7 @@ namespace laberinto
             var controles = panel1.Controls;
             foreach (var c in controles)
             {
-                (c as Control).Enabled = false;
+                (c as Control).Enabled = true;
             }
         }
 
