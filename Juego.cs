@@ -34,7 +34,12 @@ namespace laberinto
         {
             var ventana = sender as Form_Configuracion;
             var temp_terrenos = ventana.terrenos_valuados;
-            var temp_personajes = ventana.conf_p.personajes_creados;
+            var t = ventana.conf_p;
+            if(t == null)
+            {
+                return;
+            }
+            var temp_personajes = t.personajes_creados;
             if (temp_terrenos.Count == 0)
             {
                 Utilidades.mensaje_de_error("Error en la configuración de las texturas");
@@ -52,6 +57,10 @@ namespace laberinto
             agregar_opciones_a_combos_coordenadas();
         }
         private void Formulario_Juego_Shown(object sender, EventArgs e)
+        {
+            iniciar_configuracion();
+        }
+        void iniciar_configuracion()
         {
             var filas = mostrar_ventana_cargar();
             if (filas == null)
@@ -406,6 +415,11 @@ namespace laberinto
             else coordenadas = null;
             
             return coordenadas;
+        }
+
+        private void mapaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            iniciar_configuracion();
         }
     }
 }
