@@ -14,18 +14,18 @@ namespace laberinto
     {
         Formulario_Personaje form_personaje;
         Personaje[] personajes;
+        public Personaje[] personajes_creados;
         int personaje_seleccionado;
-
-        public Configurador_personajes(Textura[] texturas)
+        public Configurador_personajes(Dictionary<string, Textura> texturas)
         {
             InitializeComponent();
             form_personaje = new Formulario_Personaje(texturas);
             form_personaje.TopLevel = false;
             form_personaje.Dock = DockStyle.Fill;
         }
-
         private void abrir_formulario_personaje()
         {
+            form_personaje.preparar();
             if (this.panel_contenedor_personajes.Controls.Count > 0)
             {
                 this.panel_contenedor_personajes.Controls.RemoveAt(0);
@@ -34,12 +34,20 @@ namespace laberinto
             this.panel_contenedor_personajes.Tag = form_personaje;
             form_personaje.Show();
         }
-
         private void btn_SiguientePersonaje_Click(object sender, EventArgs e)
         {
+            //Guardar los personajes
+            var creados = new List<Personaje>();
+            foreach (var p in personajes)
+            {
+                if(p != null)
+                {
+                    creados.Add(p);
+                }
+            }
+            personajes_creados = creados.ToArray();
             this.ParentForm.Close();
         }
-
         private void cargar_num_personajes()
         {
             int x = 5;
@@ -50,12 +58,10 @@ namespace laberinto
                 y++;
             }
         }
-
         private void Form_Personaje_Load(object sender, EventArgs e)
         {
             cargar_num_personajes();
         }
-
         private void colocar_botones()
         {
             var botones = contenedor_botones.Controls.OfType<Button>();
@@ -75,7 +81,7 @@ namespace laberinto
             {
                 boton = new Button()
                 {
-                    Name = (i + 1).ToString(),
+                    Name = (i).ToString(),
                     Text = "Personaje " + (i + 1).ToString(),
                     Size = new Size(103,37),
                     Location = new Point(posicion_horizontal, posicion_vertical)
@@ -94,22 +100,32 @@ namespace laberinto
             }
             personajes = nueva_lista_personajes;
         }
-
         private void boton_personaje_click(object sender, EventArgs e)
         {
             var boton = sender as Button;
             personaje_seleccionado = int.Parse(boton.Name);
             abrir_formulario_personaje();
+            this.boton_guardar_personaje.Enabled = true;
         }
-
         private void CB_Num_Personajes_SelectionChangeCommitted_1(object sender, EventArgs e)
         {
             colocar_botones();
         }
-
         private void boton_guardar_personaje_Click(object sender, EventArgs e)
         {
-            //todo
+            bool personaje_completado = form_personaje.personaje_completado();
+            if (personaje_completado)
+            {
+                var personaje = form_personaje.obtener_personaje();
+                personajes[personaje_seleccionado] = personaje;
+                MessageBox.Show("Guardado!");
+                var botones = contenedor_botones.Controls.OfType<Button>();
+                if(personaje_seleccionado + 1 < botones.Count())
+                {
+                    botones.ElementAt(personaje_seleccionado + 1).PerformClick();
+                }
+                btn_SiguientePersonaje.Enabled = true;
+            }
         }
     }
 }

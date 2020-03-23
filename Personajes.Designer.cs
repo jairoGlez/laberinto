@@ -49,12 +49,13 @@
             // 
             // btn_SiguientePersonaje
             // 
+            this.btn_SiguientePersonaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_SiguientePersonaje.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_SiguientePersonaje.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_SiguientePersonaje.Enabled = false;
             this.btn_SiguientePersonaje.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_SiguientePersonaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SiguientePersonaje.Location = new System.Drawing.Point(987, 444);
+            this.btn_SiguientePersonaje.Location = new System.Drawing.Point(1006, 465);
             this.btn_SiguientePersonaje.Name = "btn_SiguientePersonaje";
             this.btn_SiguientePersonaje.Size = new System.Drawing.Size(103, 37);
             this.btn_SiguientePersonaje.TabIndex = 5;
@@ -85,9 +86,10 @@
             // 
             // panel_contenedor_personajes
             // 
+            this.panel_contenedor_personajes.AutoSize = true;
             this.panel_contenedor_personajes.Location = new System.Drawing.Point(140, 99);
             this.panel_contenedor_personajes.Name = "panel_contenedor_personajes";
-            this.panel_contenedor_personajes.Size = new System.Drawing.Size(835, 335);
+            this.panel_contenedor_personajes.Size = new System.Drawing.Size(969, 335);
             this.panel_contenedor_personajes.TabIndex = 13;
             // 
             // boton_guardar_personaje
@@ -95,6 +97,7 @@
             this.boton_guardar_personaje.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.boton_guardar_personaje.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.boton_guardar_personaje.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.boton_guardar_personaje.Enabled = false;
             this.boton_guardar_personaje.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.boton_guardar_personaje.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.boton_guardar_personaje.Location = new System.Drawing.Point(494, 465);

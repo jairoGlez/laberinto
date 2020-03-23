@@ -18,7 +18,8 @@ namespace laberinto
         public Dictionary<string, Textura> terrenos_valuados;
         private List<Textura> texturas;
         private List<string> texturas_seleccionadas;
-        public Form_Configuracion(Dictionary<string, string> terrenos)
+        public Configurador_personajes conf_p;
+        public Form_Configuracion(Dictionary<string, Textura> terrenos)
         {
             InitializeComponent();
             personajes = new List<Personaje>();
@@ -28,7 +29,6 @@ namespace laberinto
             cargar_nombres_de_texturas();
             crear_controles(terrenos);
         }
-
         private void cargar_nombres_de_texturas()
         {
             var nombres = new List<string>();
@@ -119,7 +119,7 @@ namespace laberinto
                 }
             }
         }
-        private void crear_controles(Dictionary<string, string> terrenos)
+        private void crear_controles(Dictionary<string, Textura> terrenos)
         {
             var contenedor = this.panel3;
             var posicion_horizontal_codigos = 242;
@@ -128,30 +128,31 @@ namespace laberinto
             TextBox txt_codigo_terreno;
             ComboBox combo_texturas;
 
-            foreach (KeyValuePair<string,string> terreno in terrenos)
+            foreach (KeyValuePair<string,Textura> terreno in terrenos)
             {
                 var lista_de_texturas = obtener_lista_de_texturas();
                 txt_codigo_terreno = new TextBox()
                 {
                     ReadOnly = true,
-                    Size = new Size(50, 20),
+                    Size = new Size(50, 32),
                     Location = new Point(posicion_horizontal_codigos, posicion_vertical),
                     Text = terreno.Key
                 };
                 combo_texturas = new ComboBox()
                 {
                     Name = terreno.Key,
-                    Size = new Size(195, 20),
+                    Size = new Size(195, 32),
                     Location = new Point(posicion_horizontal_combos, posicion_vertical),
                     DropDownStyle = ComboBoxStyle.DropDownList,
-                    DrawMode = DrawMode.OwnerDrawFixed
+                    DrawMode = DrawMode.OwnerDrawFixed,
+                    ItemHeight = 32
                 };
                 combo_texturas.Items.AddRange(lista_de_texturas);
                 combo_texturas.SelectionChangeCommitted += new System.EventHandler(cambio_de_seleccion);
                 combo_texturas.DrawItem += new DrawItemEventHandler(dibujar_items_combo_texturas); 
                 contenedor.Controls.Add(txt_codigo_terreno);
                 contenedor.Controls.Add(combo_texturas);
-                posicion_vertical += 24;
+                posicion_vertical += 38;
             }
         }
         private void dibujar_items_combo_texturas(object sender, DrawItemEventArgs e)
@@ -165,7 +166,7 @@ namespace laberinto
                 if (e.Index < texturas.Count)
                 {
                     Image textura = Image.FromFile(obtener_direccion_textura(nombre_de_textura));
-                    var miniatura = new Bitmap(textura, new Size(32, 10));
+                    var miniatura = new Bitmap(textura, new Size(32, 32));
                     e.Graphics.DrawImage(miniatura, new PointF(e.Bounds.Left, e.Bounds.Top));
                 }
                 e.Graphics.DrawString(nombre_de_textura, e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + 32, e.Bounds.Top);
@@ -188,7 +189,8 @@ namespace laberinto
         private void btn_SiguienteTerreno_Click(object sender, EventArgs e)
         {
             panel_contenedor.Controls.Clear();
-            abrirformulariohijo(new Configurador_personajes(terrenos_valuados.Values.ToArray()));
+            conf_p = new Configurador_personajes(terrenos_valuados);
+            abrirformulariohijo(conf_p);
         }
     }
 }

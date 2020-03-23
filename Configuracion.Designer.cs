@@ -82,11 +82,12 @@
             // 
             // btn_SiguienteTerreno
             // 
+            this.btn_SiguienteTerreno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_SiguienteTerreno.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_SiguienteTerreno.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_SiguienteTerreno.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btn_SiguienteTerreno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SiguienteTerreno.Location = new System.Drawing.Point(808, 410);
+            this.btn_SiguienteTerreno.Location = new System.Drawing.Point(968, 447);
             this.btn_SiguienteTerreno.Name = "btn_SiguienteTerreno";
             this.btn_SiguienteTerreno.Size = new System.Drawing.Size(115, 42);
             this.btn_SiguienteTerreno.TabIndex = 12;

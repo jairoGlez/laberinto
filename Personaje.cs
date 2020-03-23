@@ -14,22 +14,90 @@ namespace laberinto
     public partial class Formulario_Personaje : Form
     {
         Dictionary<string, string> archivos_avatares;
-        Textura[] texturas;
+        Dictionary<string, Textura> texturas;
         string[] nombres_avatares;
-        string[] avatares_seleccionados;
+        List<string> avatares_seleccionados;
+        TableLayoutPanel tabla;
+        Personaje personaje_creado;
         bool nonNumberEntered;
-        public Formulario_Personaje(Textura[] texturas)
+        public Formulario_Personaje(Dictionary<string, Textura> texturas)
         {
             InitializeComponent();
             this.texturas = texturas;
+            this.avatares_seleccionados = new List<string>();
             cargar_avatares();
+            comboBox_avatar.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox_avatar.DrawMode = DrawMode.OwnerDrawFixed;
+            comboBox_avatar.ItemHeight = 32;
+            comboBox_avatar.SelectionChangeCommitted += new System.EventHandler(selecciona_avatar);
+            comboBox_avatar.DrawItem += new DrawItemEventHandler(dibujar_items_combo_avatares);
+            tabla = new TableLayoutPanel()
+            {
+                AutoSize = true,
+                ColumnCount = 3,
+                RowCount = 1
+            };
+        }
+        public void preparar()
+        {
+            comboBox_avatar.Items.Clear();
+            List<string> avatares_disponibles = new List<string>();
+            foreach(var avatar in nombres_avatares)
+            {
+                if (!avatares_seleccionados.Contains(avatar))
+                {
+                    avatares_disponibles.Add(avatar as string);
+                }
+            }
+            comboBox_avatar.Items.AddRange(avatares_disponibles.ToArray());
             cargar_texturas();
-            comboBox7.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBox7.DrawMode = DrawMode.OwnerDrawFixed;
-            comboBox7.ItemHeight = 32;
-            comboBox7.Items.AddRange(nombres_avatares);
-            comboBox7.SelectionChangeCommitted += new System.EventHandler(selecciona_avatar);
-            comboBox7.DrawItem += new DrawItemEventHandler(dibujar_items_combo_avatares);
+            personaje_creado = null;
+        }
+        public Personaje obtener_personaje()
+        {
+            return personaje_creado;
+        }
+        public bool personaje_completado()
+        {
+            var respuesta = true;
+            var todos_na = true;
+            var avatar = comboBox_avatar.SelectedItem;
+            var inputs = tabla.Controls.OfType<TextBox>();
+            var costos = new Dictionary<string, decimal>();
+            Decimal valor_costo;
+            label_error.Text = "";
+            if (inputs.Count() == 0)
+            {
+                Utilidades.mensaje_de_error("Error en la tabla");
+                respuesta = false;
+            }
+            //Verificar que se hallan asignado todos los costos
+            foreach(TextBox costo in inputs)
+            {
+                if(costo.Text == "")
+                {
+                    label_error.Text = "Debes asignar todos los costos";
+                    return false;
+                }
+                valor_costo = Math.Round(decimal.Parse(costo.Text), 2);
+                if (valor_costo != -1) todos_na = false;
+                costos.Add(costo.Name, valor_costo);
+            }
+            //Verifica que se halla seleccionado un avatar
+            if(avatar == null)
+            {
+                label_error.Text = "Debes seleccionar un avatar";
+                return false;
+            }
+            //Verifica que no todos los costos sean NA
+            if (todos_na)
+            {
+                label_error.Text = "No todos los costos pueden ser N/A";
+                return false;
+            }
+            avatares_seleccionados.Add(avatar as string);
+            personaje_creado = new Personaje(avatar as string, archivos_avatares[avatar as string], costos);
+            return respuesta;
         }
         private void cargar_avatares()
         {
@@ -64,38 +132,64 @@ namespace laberinto
         }
         private void cargar_texturas()
         {
-            var tabla = new TableLayoutPanel();
-            tabla.AutoSize = true;
-            tabla.ColumnCount = 2;
+            tabla.SuspendLayout();
+            tabla.Controls.Clear();
+            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
+            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30));
+            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
+            tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 24));
+            tabla.Controls.Add(new Label() { Text = "Terreno", Dock = DockStyle.Fill, TextAlign = ContentAlignment.BottomCenter }, 0, 0);
+            tabla.Controls.Add(new Label() { Text = "Costo", Dock = DockStyle.Fill, TextAlign = ContentAlignment.BottomCenter }, 1, 0);
+            tabla.Controls.Add(new Label() { Text = "", Dock = DockStyle.Fill, TextAlign = ContentAlignment.BottomCenter }, 2, 0);
             tabla.RowCount = 1;
-            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
-            tabla.Controls.Add(new Label() { Text = "Terreno", Dock = DockStyle.Fill}, 0, 0);
-            tabla.Controls.Add(new Label() { Text = "Costo", Dock = DockStyle.Fill}, 1, 0);
             foreach (var textura in texturas)
             {
                 var imagen = new PictureBox()
                 {
-                    Image = Image.FromFile(textura.ruta),
+                    Image = Image.FromFile(textura.Value.ruta),
                     Height = 20,
                     Width = 130,
                     SizeMode = PictureBoxSizeMode.Normal
                 };
                 var input_costo = new TextBox()
                 {
+                    Name = textura.Key,
                     Height = 20,
-                    Width = 50,
-                    Dock = DockStyle.Fill,
+                    Width = 40,
+                    Dock = DockStyle.Fill
+                };
+                var boton_NA = new Button()
+                {
+                    Text = "N/A",
+                    Height = 20,
+                    Width = 40,
+                    Name = tabla.RowCount.ToString()
                 };
                 input_costo.KeyDown += new KeyEventHandler(textBox1_KeyDown);
                 input_costo.KeyPress += new KeyPressEventHandler(textBox1_KeyPress);
+                boton_NA.Click += new EventHandler(boton_na_click);
                 tabla.RowCount += 1;
-                tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+                tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 26));
                 tabla.Controls.Add(imagen, 0, tabla.RowCount - 1);
                 tabla.Controls.Add(input_costo, 1, tabla.RowCount - 1);
+                tabla.Controls.Add(boton_NA, 2, tabla.RowCount - 1);
             }
+            tabla.ResumeLayout();
             panel1.Controls.Add(tabla);
+        }
+        private void boton_na_click(object sender, EventArgs e)
+        {
+            var fila = int.Parse((sender as Button).Name);
+            var campo = (tabla.GetControlFromPosition(1, fila)) as TextBox;
+            if (campo.ReadOnly)
+            {
+                campo.ReadOnly = false;
+                campo.Clear();
+                return;
+            }
+            campo.Text = "-1";
+            campo.ReadOnly = true;
+
         }
         private void textBox1_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
@@ -123,7 +217,6 @@ namespace laberinto
                 nonNumberEntered = true;
             }
         }
-
         private void textBox1_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if (nonNumberEntered == true)
