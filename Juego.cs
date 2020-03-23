@@ -34,12 +34,6 @@ namespace laberinto
         {
             var ventana = sender as Form_Configuracion;
             var temp_terrenos = ventana.terrenos_valuados;
-            var temp_ventana_conf = ventana.conf_p;
-            if(temp_ventana_conf == null)
-            {
-                Utilidades.mensaje_de_error("Configuracion incompleta");
-                return;
-            }
             var temp_personajes = ventana.conf_p.personajes_creados;
             if (temp_terrenos.Count == 0)
             {
@@ -57,7 +51,7 @@ namespace laberinto
             agregar_personajes_al_combo();
             agregar_opciones_a_combos_coordenadas();
         }
-        void iniciar_configuracion()
+        private void Formulario_Juego_Shown(object sender, EventArgs e)
         {
             var filas = mostrar_ventana_cargar();
             if (filas == null)
@@ -67,10 +61,6 @@ namespace laberinto
             }
             this.tablero = new Tablero(filas);
             mostrar_ventana_configuracion();
-        }
-        private void Formulario_Juego_Shown(object sender, EventArgs e)
-        {
-            iniciar_configuracion();
         }
         private void personajeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -314,7 +304,7 @@ namespace laberinto
         private void dibujar_meta(int fila, int columna)
         {
             var casilla = tabla.GetControlFromPosition(columna + 1, fila + 1) as Label;
-            var dibujo = Image.FromFile(@"Recursos\meta.png");
+            var dibujo = Image.FromFile(@"D:\Librerias\Drive\Cursos actuales\IA\Proyecto\laberinto\bin\Debug\Recursos\meta.png");
             casilla.Image = new Bitmap(dibujo, new Size(50, 50));
         }
         private void borrar_meta()
@@ -416,11 +406,6 @@ namespace laberinto
             else coordenadas = null;
             
             return coordenadas;
-        }
-
-        private void mapaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            iniciar_configuracion();
         }
     }
 }
