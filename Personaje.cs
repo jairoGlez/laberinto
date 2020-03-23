@@ -102,7 +102,7 @@ namespace laberinto
         private void cargar_avatares()
         {
             archivos_avatares = new Dictionary<string, string>();
-            var rutas = Directory.GetFiles("Personajes", "*.*");
+            var rutas = Directory.GetFiles("Personajes", "*.jpg");
             foreach(string ruta in rutas)
             {
                 this.archivos_avatares.Add(Path.GetFileNameWithoutExtension(ruta), ruta);

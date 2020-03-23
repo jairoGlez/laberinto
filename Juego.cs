@@ -304,7 +304,7 @@ namespace laberinto
         private void dibujar_meta(int fila, int columna)
         {
             var casilla = tabla.GetControlFromPosition(columna + 1, fila + 1) as Label;
-            var dibujo = Image.FromFile(@"D:\Librerias\Drive\Cursos actuales\IA\Proyecto\laberinto\bin\Debug\Recursos\meta.png");
+            var dibujo = Image.FromFile(@"Recursos\meta.png");
             casilla.Image = new Bitmap(dibujo, new Size(50, 50));
         }
         private void borrar_meta()
