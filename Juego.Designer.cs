@@ -72,7 +72,7 @@
             // mapaToolStripMenuItem
             // 
             this.mapaToolStripMenuItem.Name = "mapaToolStripMenuItem";
-            this.mapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mapaToolStripMenuItem.Size = new System.Drawing.Size(104, 22);
             this.mapaToolStripMenuItem.Text = "Mapa";
             this.mapaToolStripMenuItem.Click += new System.EventHandler(this.mapaToolStripMenuItem_Click);
             // 
@@ -173,8 +173,10 @@
             this.contenedor_laberinto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.contenedor_laberinto.AutoScroll = true;
             this.contenedor_laberinto.AutoSize = true;
             this.contenedor_laberinto.Location = new System.Drawing.Point(12, 27);
+            this.contenedor_laberinto.MaximumSize = new System.Drawing.Size(1000, 650);
             this.contenedor_laberinto.Name = "contenedor_laberinto";
             this.contenedor_laberinto.Size = new System.Drawing.Size(371, 332);
             this.contenedor_laberinto.TabIndex = 17;

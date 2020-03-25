@@ -135,6 +135,7 @@ namespace laberinto
         {
             tabla.SuspendLayout();
             tabla.Controls.Clear();
+            tabla.RowCount = 1;
             tabla.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
             tabla.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize ));
             tabla.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize ));

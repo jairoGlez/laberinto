@@ -337,7 +337,6 @@ namespace laberinto
         {
             if (juego_iniciado)
             {
-                Console.WriteLine(e.KeyCode);
                 var coordenada_nueva = calcular_coordenada(e.KeyCode);
                 if (coordenada_nueva != null)
                 {
