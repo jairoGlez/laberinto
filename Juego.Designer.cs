@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.juegoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.personajeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.terrenoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelNombre_Textura1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -47,7 +45,6 @@
             this.comboFilaD = new System.Windows.Forms.ComboBox();
             this.comboColumnaO = new System.Windows.Forms.ComboBox();
             this.comboFilaO = new System.Windows.Forms.ComboBox();
-            this.mapaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -56,7 +53,6 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.juegoToolStripMenuItem,
             this.configuraciónToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -64,35 +60,21 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // juegoToolStripMenuItem
-            // 
-            this.juegoToolStripMenuItem.Name = "juegoToolStripMenuItem";
-            this.juegoToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.juegoToolStripMenuItem.Text = "Juego";
-            // 
             // configuraciónToolStripMenuItem
             // 
             this.configuraciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.personajeToolStripMenuItem,
-            this.terrenoToolStripMenuItem,
             this.mapaToolStripMenuItem});
             this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
             this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.configuraciónToolStripMenuItem.Text = "Configuración";
             this.configuraciónToolStripMenuItem.Click += new System.EventHandler(this.configuraciónToolStripMenuItem_Click);
             // 
-            // personajeToolStripMenuItem
+            // mapaToolStripMenuItem
             // 
-            this.personajeToolStripMenuItem.Name = "personajeToolStripMenuItem";
-            this.personajeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.personajeToolStripMenuItem.Text = "Personaje";
-            this.personajeToolStripMenuItem.Click += new System.EventHandler(this.personajeToolStripMenuItem_Click);
-            // 
-            // terrenoToolStripMenuItem
-            // 
-            this.terrenoToolStripMenuItem.Name = "terrenoToolStripMenuItem";
-            this.terrenoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.terrenoToolStripMenuItem.Text = "Terreno";
+            this.mapaToolStripMenuItem.Name = "mapaToolStripMenuItem";
+            this.mapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mapaToolStripMenuItem.Text = "Mapa";
+            this.mapaToolStripMenuItem.Click += new System.EventHandler(this.mapaToolStripMenuItem_Click);
             // 
             // labelNombre_Textura1
             // 
@@ -256,13 +238,6 @@
             this.comboFilaO.TabIndex = 17;
             this.comboFilaO.SelectedIndexChanged += new System.EventHandler(this.comboFilaO_SelectedIndexChanged);
             // 
-            // mapaToolStripMenuItem
-            // 
-            this.mapaToolStripMenuItem.Name = "mapaToolStripMenuItem";
-            this.mapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.mapaToolStripMenuItem.Text = "Mapa";
-            this.mapaToolStripMenuItem.Click += new System.EventHandler(this.mapaToolStripMenuItem_Click);
-            // 
             // Formulario_Juego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,10 +268,7 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem juegoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem personajeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem terrenoToolStripMenuItem;
         private System.Windows.Forms.Label labelNombre_Textura1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton radioButton1;

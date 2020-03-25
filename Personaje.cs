@@ -35,7 +35,8 @@ namespace laberinto
             {
                 AutoSize = true,
                 ColumnCount = 3,
-                RowCount = 1
+                RowCount = 1,
+                Dock = DockStyle.Top
             };
         }
         public void preparar()
@@ -134,29 +135,27 @@ namespace laberinto
         {
             tabla.SuspendLayout();
             tabla.Controls.Clear();
-            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30));
-            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20));
-            tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 24));
-            tabla.Controls.Add(new Label() { Text = "Terreno", Dock = DockStyle.Fill, TextAlign = ContentAlignment.BottomCenter }, 0, 0);
-            tabla.Controls.Add(new Label() { Text = "Costo", Dock = DockStyle.Fill, TextAlign = ContentAlignment.BottomCenter }, 1, 0);
-            tabla.Controls.Add(new Label() { Text = "", Dock = DockStyle.Fill, TextAlign = ContentAlignment.BottomCenter }, 2, 0);
-            tabla.RowCount = 1;
+            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
+            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize ));
+            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize ));
+            tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 25));
+            tabla.Controls.Add(new Label() { Text = "Terreno", TextAlign = ContentAlignment.MiddleLeft}, 0, 0);
+            tabla.Controls.Add(new Label() { Text = "Costo", TextAlign = ContentAlignment.MiddleLeft }, 1, 0);
+            tabla.Controls.Add(new Label() { Text = "", TextAlign = ContentAlignment.MiddleLeft }, 2, 0);
             foreach (var textura in texturas)
             {
                 var imagen = new PictureBox()
                 {
                     Image = Image.FromFile(textura.Value.ruta),
-                    Height = 20,
-                    Width = 130,
+                    Height = 30,
+                    Width = 30,
                     SizeMode = PictureBoxSizeMode.Normal
                 };
                 var input_costo = new TextBox()
                 {
                     Name = textura.Key,
                     Height = 20,
-                    Width = 40,
-                    Dock = DockStyle.Fill
+                    Width = 40
                 };
                 var boton_NA = new Button()
                 {
@@ -168,8 +167,9 @@ namespace laberinto
                 input_costo.KeyDown += new KeyEventHandler(textBox1_KeyDown);
                 input_costo.KeyPress += new KeyPressEventHandler(textBox1_KeyPress);
                 boton_NA.Click += new EventHandler(boton_na_click);
+
                 tabla.RowCount += 1;
-                tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 26));
+                tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
                 tabla.Controls.Add(imagen, 0, tabla.RowCount - 1);
                 tabla.Controls.Add(input_costo, 1, tabla.RowCount - 1);
                 tabla.Controls.Add(boton_NA, 2, tabla.RowCount - 1);

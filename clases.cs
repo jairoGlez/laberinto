@@ -113,10 +113,15 @@ namespace laberinto
     }
     public class Tabla_laberinto : TableLayoutPanel
     {
+        public Tabla_laberinto()
+        {
+            DoubleBuffered = true;
+        }
         protected override void OnCellPaint(TableLayoutCellPaintEventArgs e)
         {
             base.OnCellPaint(e);
             Control c = this.GetControlFromPosition(e.Column, e.Row);
+
             if (c != null)
             {
                 Graphics g = e.Graphics;

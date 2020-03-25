@@ -17,6 +17,7 @@ namespace laberinto
         public Formulario_Juego()
         {
             InitializeComponent();
+            
         }
         private List<string[]> mostrar_ventana_cargar()
         {
@@ -71,11 +72,7 @@ namespace laberinto
             this.tablero = new Tablero(filas);
             mostrar_ventana_configuracion();
         }
-        private void personajeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           // confi conf = new Configurador_personajes(); 
-           // conf_pers.Show();
-        }
+
         private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
           //  Form_Configuracion conf = new Form_Configuracion();
@@ -104,14 +101,14 @@ namespace laberinto
             Textura t;
             var cant_filas = tablero.dimensiones["filas"];
             var cant_columnas = tablero.dimensiones["columnas"];
+            ToolTip info;
             tabla = new Tabla_laberinto()
             {
                 Location = new Point(3, 3),
-                AutoSize = true,
-                AutoSizeMode = AutoSizeMode.GrowOnly
+                Height = 25 + tablero.dimensiones["filas"] * 70,
+                Width = 25 + tablero.dimensiones["columnas"] * 70,
+                Visible = false
             };
-            contenedor_laberinto.Visible = false;
-            tabla.SuspendLayout();
             tabla.ColumnStyles.Clear();
             tabla.RowStyles.Clear();
             tabla.Controls.Clear();
@@ -132,12 +129,15 @@ namespace laberinto
                 for (int j = 1; j <= cant_columnas; j++)
                 {
                     t = tablero.texturaPorCoordenadas(i - 1, j - 1);
-                    tabla.Controls.Add(new Label() { Text = "", BackColor = Color.Transparent,Tag = t,TextAlign = ContentAlignment.TopLeft, Dock = DockStyle.Fill }, j, i);
+                    var tipo = tablero.casillaPorCoordenadas(i - 1, j - 1).tipo;
+                    var casilla = new Label() { Text = "", BackColor = Color.Transparent, Tag = t, TextAlign = ContentAlignment.TopLeft, Dock = DockStyle.Fill };
+                    info = new ToolTip();
+                    info.SetToolTip(casilla, string.Format("Codigo: {0}, Textura: {1}", tipo, t.nombre));
+                    tabla.Controls.Add(casilla, j, i);
                 }
             }
-            tabla.ResumeLayout();
             contenedor_laberinto.Controls.Add(tabla);
-            contenedor_laberinto.Visible = true;
+            tabla.Visible = true;
         }
         private void agregar_personajes_al_combo()
         {
@@ -364,6 +364,7 @@ namespace laberinto
             {
                 MessageBox.Show("Victoria!");
                 desbloquear_controles();
+                reiniciar_laberinto();
             }
         }
         private void desbloquear_controles()
@@ -371,7 +372,7 @@ namespace laberinto
             var controles = panel1.Controls;
             foreach (var c in controles)
             {
-                (c as Control).Enabled = false;
+                (c as Control).Enabled = true;
             }
         }
 
@@ -420,6 +421,21 @@ namespace laberinto
         private void mapaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             iniciar_configuracion();
+        }
+        private void reiniciar_laberinto()
+        {
+            tabla.SuspendLayout();
+            Label casilla;
+            borrar_meta();
+            for(int i = 1; i < tablero.dimensiones["filas"]; i++)
+            {
+                for(int j = 1; i < tablero.dimensiones["columnas"]; j++)
+                {
+                    casilla = tabla.GetControlFromPosition(j, i) as Label;
+                    casilla.Text = "";
+                }
+            }
+            tabla.ResumeLayout();
         }
     }
 }
