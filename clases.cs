@@ -113,9 +113,15 @@ namespace laberinto
     }
     public class Tabla_laberinto : TableLayoutPanel
     {
-        public Tabla_laberinto()
+        Dictionary<string, Image> texturas;
+        public Tabla_laberinto(Dictionary<string, Textura> rutas_texturas)
         {
             DoubleBuffered = true;
+            texturas = new Dictionary<string, Image>();
+            foreach(KeyValuePair<string,Textura> datos_textura in rutas_texturas)
+            {
+                texturas.Add(datos_textura.Value.nombre, Image.FromFile(datos_textura.Value.ruta));
+            }
         }
         protected override void OnCellPaint(TableLayoutCellPaintEventArgs e)
         {
@@ -138,7 +144,7 @@ namespace laberinto
                 else
                 {
                     Textura t = c.Tag as Textura;
-                    g.DrawImage(Image.FromFile(t.ruta), e.CellBounds.Location.X, e.CellBounds.Location.Y, new Rectangle(new Point(0,0), e.CellBounds.Size), GraphicsUnit.Pixel);
+                    g.DrawImage(this.texturas[t.nombre], e.CellBounds.Location.X, e.CellBounds.Location.Y, new Rectangle(new Point(0,0), e.CellBounds.Size), GraphicsUnit.Pixel);
                 }
             }
         }

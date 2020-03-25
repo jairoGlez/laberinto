@@ -165,7 +165,6 @@ namespace laberinto
                 var nombre_de_textura = opcion as string;
                 if (e.Index < texturas.Count)
                 {
-                    Console.WriteLine(nombre_de_textura);
                     Image textura = Image.FromFile(obtener_direccion_textura(nombre_de_textura));
                     var miniatura = new Bitmap(textura, new Size(32, 32));
                     e.Graphics.DrawImage(miniatura, new PointF(e.Bounds.Left, e.Bounds.Top));

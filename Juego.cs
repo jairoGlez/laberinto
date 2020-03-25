@@ -102,7 +102,7 @@ namespace laberinto
             var cant_filas = tablero.dimensiones["filas"];
             var cant_columnas = tablero.dimensiones["columnas"];
             ToolTip info;
-            tabla = new Tabla_laberinto()
+            tabla = new Tabla_laberinto(tablero.texturas_asignadas)
             {
                 Location = new Point(3, 3),
                 Height = 25 + tablero.dimensiones["filas"] * 70,
@@ -337,6 +337,7 @@ namespace laberinto
         {
             if (juego_iniciado)
             {
+                Console.WriteLine(e.KeyCode);
                 var coordenada_nueva = calcular_coordenada(e.KeyCode);
                 if (coordenada_nueva != null)
                 {
@@ -432,6 +433,7 @@ namespace laberinto
                 for(int j = 1; i < tablero.dimensiones["columnas"]; j++)
                 {
                     casilla = tabla.GetControlFromPosition(j, i) as Label;
+                    if (casilla == null) return;
                     casilla.Text = "";
                 }
             }

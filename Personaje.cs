@@ -198,13 +198,13 @@ namespace laberinto
             {
                 if (e.KeyCode < Keys.NumPad0 || e.KeyCode > Keys.NumPad9)
                 {
-                    if (e.KeyCode != Keys.Back && e.KeyCode != Keys.Decimal)
+                    if (e.KeyCode != Keys.Back && e.KeyCode != Keys.Decimal && e.KeyCode != Keys.OemPeriod)
                     {
                         nonNumberEntered = true;
                     }
                 }
             }
-            if (e.KeyCode == Keys.Decimal)
+            if (e.KeyCode == Keys.Decimal || e.KeyCode == Keys.OemPeriod)
             {
                 var texto = (sender as TextBox).Text;
                 if (texto == "" || texto.Contains("."))
