@@ -84,7 +84,7 @@ namespace laberinto
             bloquear_controles();
             this.Focus();
             juego_iniciado = true;
-            visita = 1;
+            visita = 2;
             verificar_victoria();
         }
 
@@ -102,12 +102,17 @@ namespace laberinto
             var cant_filas = tablero.dimensiones["filas"];
             var cant_columnas = tablero.dimensiones["columnas"];
             ToolTip info;
+            var tam_casillas = 45;
+
             tabla = new Tabla_laberinto(tablero.texturas_asignadas)
             {
                 Location = new Point(3, 3),
-                Height = 25 + tablero.dimensiones["filas"] * 70,
-                Width = 25 + tablero.dimensiones["columnas"] * 70,
-                Visible = false
+                //   Height = 25 + tablero.dimensiones["filas"] * tam_casillas,
+                //  Width = 25 + tablero.dimensiones["columnas"] * tam_casillas,
+                Visible = false,
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink
+
             };
             tabla.ColumnStyles.Clear();
             tabla.RowStyles.Clear();
@@ -119,13 +124,13 @@ namespace laberinto
             tabla.Controls.Add(new Label() { Text = "/", Dock = DockStyle.Fill}, 0, 0);
             for (int i = 1; i <= cant_columnas; i++)
             {
-                tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 70));
-                tabla.Controls.Add(new Label() { Text = i.ToString(), Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, BackColor = Color.Transparent }, i, 0);
+                tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, tam_casillas));
+                tabla.Controls.Add(new Label() { Text = char.ConvertFromUtf32(64 + i) , Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, BackColor = Color.Transparent }, i, 0);
             }
             for (int i = 1; i <= cant_filas; i++)
             {
-                tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 70));
-                tabla.Controls.Add(new Label() { Text = char.ConvertFromUtf32(64 + i), Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, BackColor = Color.Transparent }, 0, i);
+                tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, tam_casillas));
+                tabla.Controls.Add(new Label() { Text = i.ToString(), Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, BackColor = Color.Transparent }, 0, i);
                 for (int j = 1; j <= cant_columnas; j++)
                 {
                     t = tablero.texturaPorCoordenadas(i - 1, j - 1);
@@ -189,14 +194,14 @@ namespace laberinto
             List<string> opciones = new List<string>();
             for(int i = 0; i < tablero.dimensiones["filas"]; i++)
             {
-                opciones.Add(char.ConvertFromUtf32(65 + i));
+                opciones.Add((i + 1).ToString()); 
             }
             comboFilaO.Items.AddRange(opciones.ToArray());
             comboFilaD.Items.AddRange(opciones.ToArray());
             opciones.Clear();
             for (int i = 0; i < tablero.dimensiones["columnas"]; i++)
             {
-                opciones.Add((i+1).ToString());
+                opciones.Add(char.ConvertFromUtf32(65 + i));
             }
             comboColumnaO.Items.AddRange(opciones.ToArray());
             comboColumnaD.Items.AddRange(opciones.ToArray());
@@ -206,7 +211,7 @@ namespace laberinto
             var personaje = personajes[comboBox1.SelectedIndex];
             var casilla = tabla.GetControlFromPosition(columna + 1, fila + 1) as Label;
             var dibujo_personaje = Image.FromFile(personaje.archivo);
-            casilla.Image = new Bitmap(dibujo_personaje, new Size(50, 50));
+            casilla.Image = new Bitmap(dibujo_personaje, new Size(45, 45));
             casilla.Text += " "+visita.ToString();
             visita++;
         }
@@ -220,7 +225,7 @@ namespace laberinto
             var casilla = tabla.GetControlFromPosition(columna + 1, fila + 1) as Label;
             var dibujo_personaje = Image.FromFile(personaje.archivo);
             casilla.Image = new Bitmap(dibujo_personaje, new Size(50, 50));
-            casilla.Text = "Inicio";
+            casilla.Text = "Inicio, 1";
         }
         private void comboFilaO_SelectedIndexChanged(object sender, EventArgs e)
         {

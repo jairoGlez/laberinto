@@ -173,12 +173,12 @@
             this.contenedor_laberinto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.contenedor_laberinto.AutoScroll = true;
             this.contenedor_laberinto.AutoSize = true;
+            this.contenedor_laberinto.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.contenedor_laberinto.Location = new System.Drawing.Point(12, 27);
             this.contenedor_laberinto.MaximumSize = new System.Drawing.Size(1000, 650);
             this.contenedor_laberinto.Name = "contenedor_laberinto";
-            this.contenedor_laberinto.Size = new System.Drawing.Size(371, 332);
+            this.contenedor_laberinto.Size = new System.Drawing.Size(0, 0);
             this.contenedor_laberinto.TabIndex = 17;
             // 
             // panel1
@@ -187,8 +187,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.comboColumnaD);
             this.panel1.Controls.Add(this.comboFilaD);
-            this.panel1.Controls.Add(this.comboColumnaO);
             this.panel1.Controls.Add(this.comboFilaO);
+            this.panel1.Controls.Add(this.comboColumnaO);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.labelNombre_Textura1);
@@ -204,7 +204,7 @@
             // 
             this.comboColumnaD.Enabled = false;
             this.comboColumnaD.FormattingEnabled = true;
-            this.comboColumnaD.Location = new System.Drawing.Point(145, 190);
+            this.comboColumnaD.Location = new System.Drawing.Point(89, 192);
             this.comboColumnaD.Name = "comboColumnaD";
             this.comboColumnaD.Size = new System.Drawing.Size(50, 21);
             this.comboColumnaD.TabIndex = 20;
@@ -214,7 +214,7 @@
             // 
             this.comboFilaD.Enabled = false;
             this.comboFilaD.FormattingEnabled = true;
-            this.comboFilaD.Location = new System.Drawing.Point(89, 190);
+            this.comboFilaD.Location = new System.Drawing.Point(145, 192);
             this.comboFilaD.Name = "comboFilaD";
             this.comboFilaD.Size = new System.Drawing.Size(50, 21);
             this.comboFilaD.TabIndex = 19;
@@ -224,7 +224,7 @@
             // 
             this.comboColumnaO.Enabled = false;
             this.comboColumnaO.FormattingEnabled = true;
-            this.comboColumnaO.Location = new System.Drawing.Point(145, 163);
+            this.comboColumnaO.Location = new System.Drawing.Point(89, 160);
             this.comboColumnaO.Name = "comboColumnaO";
             this.comboColumnaO.Size = new System.Drawing.Size(50, 21);
             this.comboColumnaO.TabIndex = 18;
@@ -234,7 +234,7 @@
             // 
             this.comboFilaO.Enabled = false;
             this.comboFilaO.FormattingEnabled = true;
-            this.comboFilaO.Location = new System.Drawing.Point(89, 163);
+            this.comboFilaO.Location = new System.Drawing.Point(145, 160);
             this.comboFilaO.Name = "comboFilaO";
             this.comboFilaO.Size = new System.Drawing.Size(50, 21);
             this.comboFilaO.TabIndex = 17;
