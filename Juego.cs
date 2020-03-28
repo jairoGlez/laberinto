@@ -333,30 +333,7 @@ namespace laberinto
             tablero.coordenadas_personaje["columna"] = coordenada_nueva["columna"];
             dibujar_personaje(tablero.coordenadas_personaje["fila"], tablero.coordenadas_personaje["columna"]);
         }
-        private void Formulario_Juego_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (juego_iniciado)
-            {
-                var coordenada_nueva = calcular_coordenada(e.KeyCode);
-                if (coordenada_nueva != null)
-                {
-                    if (!es_coordenada_valida(coordenada_nueva))
-                    {
-                        e.Handled = true;
-                        return;
-                    }
-                    if (!es_habitable(coordenada_nueva))
-                    {
-                        e.Handled = true;
-                        return;
-                    }
-                    borrar_personaje(tablero.coordenadas_personaje["fila"], tablero.coordenadas_personaje["columna"]);
-                    mover_personaje(coordenada_nueva);
-                    verificar_victoria();
-                }
-            }
-            e.Handled = true;
-        }
+        
 
         private void verificar_victoria()
         {
@@ -392,31 +369,7 @@ namespace laberinto
             return true;
         }
 
-        private Dictionary<string, int> calcular_coordenada(Keys tecla)
-        {
-            var coordenadas = new Dictionary<string, int>();
-            coordenadas.Add("fila", tablero.coordenadas_personaje["fila"]);
-            coordenadas.Add("columna", tablero.coordenadas_personaje["columna"]);
-            if (tecla == Keys.Up)
-            {
-                coordenadas["fila"] -= 1;
-            }
-            else if (tecla == Keys.Right)
-            {
-                coordenadas["columna"] += 1;
-            }
-            else if (tecla == Keys.Down)
-            {
-                coordenadas["fila"] += 1;
-            }
-            else if (tecla == Keys.Left)
-            {
-                coordenadas["columna"] -= 1;
-            }
-            else coordenadas = null;
-            
-            return coordenadas;
-        }
+        
 
         private void mapaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -437,6 +390,63 @@ namespace laberinto
                 }
             }
             tabla.ResumeLayout();
+        }
+
+        private void Formulario_Juego_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (juego_iniciado)
+            {
+                var coordenada = Calcular_coordenada(e.KeyCode);
+
+                if(coordenada != null)
+                {
+                    if (!es_coordenada_valida(coordenada) || !es_habitable(coordenada))
+                    {
+                        System.Media.SystemSounds.Asterisk.Play();
+                        e.Handled = true;
+                        return;
+                    }
+
+                    borrar_personaje(tablero.coordenadas_personaje["fila"], tablero.coordenadas_personaje["columna"]);
+                    mover_personaje(coordenada);
+                    verificar_victoria();
+
+                }
+            }
+
+
+
+            e.Handled = true;
+        }
+
+        private Dictionary<string,int> Calcular_coordenada(Keys tecla)
+        {
+            var coordenada = new Dictionary<string,int>();
+            coordenada.Add("fila", tablero.coordenadas_personaje["fila"]);
+            coordenada.Add("columna", tablero.coordenadas_personaje["columna"]);
+
+            if(tecla == Keys.Up)
+            {
+                coordenada["fila"] --;
+            }
+            else if(tecla == Keys.Right)
+            {
+                coordenada["columna"] ++;
+            }
+            else if(tecla == Keys.Down)
+            {
+                coordenada["fila"] ++;
+            }
+            else if(tecla == Keys.Left)
+            {
+                coordenada["columna"] --;
+            }
+            else 
+            {
+                coordenada = null;
+            }
+
+            return coordenada;
         }
     }
 }
