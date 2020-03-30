@@ -91,7 +91,7 @@
             this.btn_SiguienteTerreno.Name = "btn_SiguienteTerreno";
             this.btn_SiguienteTerreno.Size = new System.Drawing.Size(115, 42);
             this.btn_SiguienteTerreno.TabIndex = 12;
-            this.btn_SiguienteTerreno.Text = "Siguiente";
+            this.btn_SiguienteTerreno.Text = "Aceptar";
             this.btn_SiguienteTerreno.UseVisualStyleBackColor = false;
             this.btn_SiguienteTerreno.Click += new System.EventHandler(this.btn_SiguienteTerreno_Click);
             // 

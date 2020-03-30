@@ -172,25 +172,9 @@ namespace laberinto
                 e.Graphics.DrawString(nombre_de_textura, e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + 32, e.Bounds.Top);
             }
         }
-        private void abrirformulariohijo(object formhijo)
-        {
-            if (this.panel_contenedor.Controls.Count > 0)
-            {
-                this.panel_contenedor.Controls.RemoveAt(0);
-            }
-
-            Form fh = formhijo as Form;
-            fh.TopLevel = false;
-            fh.Dock = DockStyle.Fill;
-            this.panel_contenedor.Controls.Add(fh);
-            this.panel_contenedor.Tag = fh;
-            fh.Show();
-        }
         private void btn_SiguienteTerreno_Click(object sender, EventArgs e)
         {
-            panel_contenedor.Controls.Clear();
-            conf_p = new Configurador_personajes(terrenos_valuados);
-            abrirformulariohijo(conf_p);
+            Close();
         }
     }
 }

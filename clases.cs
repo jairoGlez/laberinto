@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace laberinto
 {
@@ -26,9 +27,31 @@ namespace laberinto
         public string nombre;
         public string archivo;
         public Dictionary<string, decimal> costos;
-        public Personaje()
+        private Dictionary<string, decimal> costos_default;
+        public Personaje(string nombre_del_archivo)
         {
-
+            this.nombre = Path.GetFileNameWithoutExtension(nombre_del_archivo);
+            this.archivo = nombre_del_archivo;
+            leer_costos();
+        }
+        void leer_costos()
+        {
+            var lineas= File.ReadAllLines("Personajes//costos//" + this.nombre + ".txt");
+            var costos = new Dictionary<string, decimal>();
+            foreach(string costo in lineas)
+            {
+                var campos = costo.Split(',');
+                costos.Add(campos[0], decimal.Parse(campos[1]));
+            }
+            costos_default = costos;
+        }
+        public void cargar_costos(Dictionary<string, Textura> codigos_asignados)
+        {
+            this.costos = new Dictionary<string, decimal>();
+            foreach(KeyValuePair<string, Textura>asignacion in codigos_asignados)
+            {
+                costos.Add(asignacion.Key, costos_default[asignacion.Value.nombre]);
+            }
         }
         public Personaje(string nombre, string ruta, Dictionary<string, decimal> costos)
         {
