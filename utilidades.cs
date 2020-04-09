@@ -34,12 +34,13 @@ namespace laberinto
             {
 
                 mensaje_de_error("no se encontro el archivo");
-                return lineas_parseadas;
+                return null;
             }
 
             if (lineas.Length == 0)
             {
                 mensaje_de_error("El archivo esta vacio");
+                return null;
             }
             else
             {
@@ -61,16 +62,15 @@ namespace laberinto
                         else
                         {
                             mensaje_de_error(string.Format("Error en linea {0} caracter {1}. Caracter no valido", i, j));
-                            lineas_parseadas.Clear();
-                            return lineas_parseadas;
+                            return null;
                         }
                         j++;
                     }
                     if (j - 1 != num_columnas)
                     {
                         mensaje_de_error("Las columnas son de distinto tamaño");
-                        lineas_parseadas.Clear();
-                        return lineas_parseadas;
+
+                        return null;
                     }
                     i++;
                     j = 1;
