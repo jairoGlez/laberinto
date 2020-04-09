@@ -600,8 +600,9 @@ namespace laberinto
             tablero.coordenadas_personaje["fila"] = -1;
             tablero.coordenadas_personaje["columna"] = -1;
         }
-        private void button3_Click(object sender, EventArgs e)
+        private void boton_guardar_costos_click(object sender, EventArgs e)
         {
+            actualizar_costos();
         }
     }
 }
