@@ -68,6 +68,12 @@
     <Compile Include="Personaje.Designer.cs">
       <DependentUpon>Personaje.cs</DependentUpon>
     </Compile>
+    <Compile Include="Prioridad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prioridad.Designer.cs">
+      <DependentUpon>Prioridad.cs</DependentUpon>
+    </Compile>
     <Compile Include="utilidades.cs" />
     <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
@@ -109,6 +115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Personaje.resx">
       <DependentUpon>Personaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prioridad.resx">
+      <DependentUpon>Prioridad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
