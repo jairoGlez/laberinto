@@ -81,9 +81,7 @@ namespace laberinto
         }
         private void configuraciónToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          //  Form_Configuracion conf = new Form_Configuracion();
-          //  conf.Show();
-
+          
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -141,6 +139,7 @@ namespace laberinto
         }
         private void dibujar_laberinto()
         {
+            Dictionary<string, string> datos;
             Textura t;
             var cant_filas = tablero.dimensiones["filas"];
             var cant_columnas = tablero.dimensiones["columnas"];
@@ -177,9 +176,12 @@ namespace laberinto
                 tabla.Controls.Add(new Label() { Text = i.ToString(), Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleCenter, BackColor = Color.Transparent }, 0, i);
                 for (int j = 1; j <= cant_columnas; j++)
                 {
+                    datos = new Dictionary<string, string>();
                     t = tablero.texturaPorCoordenadas(i - 1, j - 1);
+                    datos.Add("textura", t.nombre);
+                    datos.Add("visible", tablero.es_visible(i - 1, j - 1));
                     var tipo = tablero.casillaPorCoordenadas(i - 1, j - 1).tipo;
-                    var casilla = new Label() { Text = "", BackColor = Color.Transparent, Tag = t, TextAlign = ContentAlignment.TopLeft, Dock = DockStyle.Fill };
+                    var casilla = new Label() { Text = "", BackColor = Color.Transparent,  Tag = datos, TextAlign = ContentAlignment.TopLeft, Dock = DockStyle.Fill };
                     info = new ToolTip();
                     info.SetToolTip(casilla, string.Format("Codigo: {0}, Textura: {1}", tipo, t.nombre));
                     tabla.Controls.Add(casilla, j, i);
@@ -302,8 +304,43 @@ namespace laberinto
             var casilla = tabla.GetControlFromPosition(columna + 1, fila + 1) as Label;
             var dibujo_personaje = Image.FromFile(personaje.archivo);
             casilla.Image = new Bitmap(dibujo_personaje, new Size(45, 45));
+            desenmascarar_adyacentes(fila, columna);
             casilla.Text += " "+visita.ToString();
             visita++;
+        }
+        private void desenmascarar_adyacentes(int fila, int columna)
+        {
+            modificar_enmascaramiento(fila, columna, true);
+            modificar_enmascaramiento(fila + 1, columna, true);
+            modificar_enmascaramiento(fila - 1, columna, true);
+            modificar_enmascaramiento(fila, columna + 1, true);
+            modificar_enmascaramiento(fila, columna - 1, true);
+        }
+        private void enmascarar_adyacentes(int fila, int columna)
+        {
+            modificar_enmascaramiento(fila, columna, false);
+            modificar_enmascaramiento(fila + 1, columna, false);
+            modificar_enmascaramiento(fila - 1, columna, false);
+            modificar_enmascaramiento(fila, columna + 1, false);
+            modificar_enmascaramiento(fila, columna - 1, false);
+        }
+        private void modificar_enmascaramiento(int fila, int columna, bool v)
+        {
+            var coordenada = new Dictionary<string, int>();
+            coordenada.Add("fila", fila);
+            coordenada.Add("columna", columna);
+            if (es_coordenada_valida(coordenada))
+            {
+                var datos = (tabla.GetControlFromPosition(columna + 1, fila + 1).Tag) as Dictionary<string, string>;
+                if (v)
+                {
+                    datos["visible"] = "1";
+                }
+                else
+                {
+                    datos["visible"] = "0";
+                }
+            }
         }
         void dibujar_inicio(int fila, int columna)
         {
