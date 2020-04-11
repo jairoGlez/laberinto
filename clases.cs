@@ -13,12 +13,14 @@ namespace laberinto
     {
         Dictionary<string, int> coordenadas;
         public string tipo;
+        public bool visible;
 
         public Casilla(int fila, int columna, string tipo)
         {
             coordenadas = new Dictionary<string, int>();
             coordenadas.Add("fila", fila);
             coordenadas.Add("columna", columna);
+            this.visible = false;
             this.tipo = tipo;
         }
     }
@@ -113,6 +115,21 @@ namespace laberinto
             }
             return null;
         }
+        public string es_visible(int fila, int columna)
+        {
+            if (fila < dimensiones["filas"] && columna < dimensiones["columnas"])
+            {
+                if (tablero.ElementAt(fila).ElementAt(columna).visible == false)
+                {
+                    return "0";
+                }
+                else
+                {
+                    return "1";
+                }
+            }
+            return null;
+        }
         public Textura texturaPorCoordenadas(int fila, int columna)
         {
             var casilla = casillaPorCoordenadas(fila, columna);
@@ -121,6 +138,10 @@ namespace laberinto
                 return texturas_asignadas[casilla.tipo];
             }
             return null;
+        }
+        public void cambiar_visivilidad(int fila, int columna, bool v)
+        {
+            tablero.ElementAt(fila).ElementAt(columna).visible = v;
         }
     }
     public class Textura
@@ -166,8 +187,13 @@ namespace laberinto
                 }
                 else
                 {
-                    Textura t = c.Tag as Textura;
-                    g.DrawImage(this.texturas[t.nombre], e.CellBounds.Location.X, e.CellBounds.Location.Y, new Rectangle(new Point(0,0), e.CellBounds.Size), GraphicsUnit.Pixel);
+                    var datos = c.Tag as Dictionary<string, string>;
+                    string visible = datos["visible"];
+                    string t = datos["textura"];
+                    if(visible == "1")
+                    {
+                        g.DrawImage(this.texturas[t], e.CellBounds.Location.X, e.CellBounds.Location.Y, new Rectangle(new Point(0, 0), e.CellBounds.Size), GraphicsUnit.Pixel);
+                    }
                 }
             }
         }
