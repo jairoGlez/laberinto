@@ -641,5 +641,11 @@ namespace laberinto
         {
             actualizar_costos();
         }
+
+        private void prioridadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var conf = new Form_Prioridad();
+            conf.Show();
+        }
     }
 }

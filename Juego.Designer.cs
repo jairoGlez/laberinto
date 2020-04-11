@@ -50,6 +50,7 @@
             this.comboFilaD = new System.Windows.Forms.ComboBox();
             this.comboFilaO = new System.Windows.Forms.ComboBox();
             this.comboColumnaO = new System.Windows.Forms.ComboBox();
+            this.prioridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -69,7 +70,8 @@
             // configuraciónToolStripMenuItem
             // 
             this.configuraciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mapaToolStripMenuItem});
+            this.mapaToolStripMenuItem,
+            this.prioridadToolStripMenuItem});
             this.configuraciónToolStripMenuItem.Name = "configuraciónToolStripMenuItem";
             this.configuraciónToolStripMenuItem.Size = new System.Drawing.Size(95, 20);
             this.configuraciónToolStripMenuItem.Text = "Configuración";
@@ -320,6 +322,13 @@
             this.comboColumnaO.TabIndex = 18;
             this.comboColumnaO.SelectedIndexChanged += new System.EventHandler(this.comboColumnaO_SelectedIndexChanged);
             // 
+            // prioridadToolStripMenuItem
+            // 
+            this.prioridadToolStripMenuItem.Name = "prioridadToolStripMenuItem";
+            this.prioridadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.prioridadToolStripMenuItem.Text = "Prioridad";
+            this.prioridadToolStripMenuItem.Click += new System.EventHandler(this.prioridadToolStripMenuItem_Click);
+            // 
             // Formulario_Juego
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -373,5 +382,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripMenuItem prioridadToolStripMenuItem;
     }
 }
