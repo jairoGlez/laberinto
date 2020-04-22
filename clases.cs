@@ -194,6 +194,10 @@ namespace laberinto
                     {
                         g.DrawImage(this.texturas[t], e.CellBounds.Location.X, e.CellBounds.Location.Y, new Rectangle(new Point(0, 0), e.CellBounds.Size), GraphicsUnit.Pixel);
                     }
+                    else
+                    {
+                        g.FillRectangle(Brushes.Black, e.CellBounds.X, e.CellBounds.Y, e.CellBounds.Width, e.CellBounds.Height);
+                    }
                 }
             }
         }
