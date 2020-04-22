@@ -34,7 +34,6 @@
             this.labelNombre_Textura1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -42,7 +41,7 @@
             this.contenedor_laberinto = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.boton_reiniciar = new System.Windows.Forms.Button();
             this.tabla_costos = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -109,28 +108,18 @@
             this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(6, 19);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(76, 17);
+            this.radioButton1.Size = new System.Drawing.Size(82, 17);
             this.radioButton1.TabIndex = 11;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Manhattan";
+            this.radioButton1.Text = "Profundidad";
             this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 42);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(74, 17);
-            this.radioButton2.TabIndex = 12;
-            this.radioButton2.Text = "Euclidiana";
-            this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 224);
+            this.label2.Location = new System.Drawing.Point(12, 226);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 28);
             this.label2.TabIndex = 13;
@@ -141,7 +130,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 256);
+            this.label3.Location = new System.Drawing.Point(12, 258);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 28);
             this.label3.TabIndex = 14;
@@ -154,25 +143,24 @@
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(40, 326);
+            this.button1.Location = new System.Drawing.Point(40, 328);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(155, 71);
             this.button1.TabIndex = 15;
             this.button1.Text = "JUGAR";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button_Jugar_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Location = new System.Drawing.Point(17, 145);
+            this.groupBox1.Location = new System.Drawing.Point(17, 147);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(215, 76);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "función";
+            this.groupBox1.Text = "Algoritmo";
             // 
             // contenedor_laberinto
             // 
@@ -192,7 +180,7 @@
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.boton_reiniciar);
             this.panel1.Controls.Add(this.tabla_costos);
             this.panel1.Controls.Add(this.comboColumnaD);
             this.panel1.Controls.Add(this.comboFilaD);
@@ -206,13 +194,13 @@
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Location = new System.Drawing.Point(417, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 400);
+            this.panel1.Size = new System.Drawing.Size(244, 402);
             this.panel1.TabIndex = 20;
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(66, 121);
+            this.button3.Location = new System.Drawing.Point(66, 123);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 23);
             this.button3.TabIndex = 23;
@@ -220,17 +208,17 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.boton_guardar_costos_click);
             // 
-            // button2
+            // boton_reiniciar
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(40, 291);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(155, 29);
-            this.button2.TabIndex = 22;
-            this.button2.Text = "Reiniciar";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.boton_reiniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.boton_reiniciar.Enabled = false;
+            this.boton_reiniciar.Location = new System.Drawing.Point(40, 293);
+            this.boton_reiniciar.Name = "boton_reiniciar";
+            this.boton_reiniciar.Size = new System.Drawing.Size(155, 29);
+            this.boton_reiniciar.TabIndex = 22;
+            this.boton_reiniciar.Text = "Reiniciar";
+            this.boton_reiniciar.UseVisualStyleBackColor = true;
+            this.boton_reiniciar.Click += new System.EventHandler(this.button_reiniciar_Click);
             // 
             // tabla_costos
             // 
@@ -247,8 +235,8 @@
             this.tabla_costos.Location = new System.Drawing.Point(17, 85);
             this.tabla_costos.Name = "tabla_costos";
             this.tabla_costos.RowCount = 1;
-            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tabla_costos.Size = new System.Drawing.Size(143, 30);
+            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tabla_costos.Size = new System.Drawing.Size(143, 32);
             this.tabla_costos.TabIndex = 21;
             // 
             // label1
@@ -258,7 +246,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(4, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 28);
+            this.label1.Size = new System.Drawing.Size(64, 30);
             this.label1.TabIndex = 0;
             this.label1.Text = "Terreno";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -271,7 +259,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(75, 1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 28);
+            this.label4.Size = new System.Drawing.Size(51, 30);
             this.label4.TabIndex = 1;
             this.label4.Text = "Costo";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -281,7 +269,7 @@
             this.comboColumnaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboColumnaD.Enabled = false;
             this.comboColumnaD.FormattingEnabled = true;
-            this.comboColumnaD.Location = new System.Drawing.Point(89, 262);
+            this.comboColumnaD.Location = new System.Drawing.Point(89, 264);
             this.comboColumnaD.Name = "comboColumnaD";
             this.comboColumnaD.Size = new System.Drawing.Size(67, 21);
             this.comboColumnaD.TabIndex = 20;
@@ -292,7 +280,7 @@
             this.comboFilaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboFilaD.Enabled = false;
             this.comboFilaD.FormattingEnabled = true;
-            this.comboFilaD.Location = new System.Drawing.Point(162, 262);
+            this.comboFilaD.Location = new System.Drawing.Point(162, 264);
             this.comboFilaD.Name = "comboFilaD";
             this.comboFilaD.Size = new System.Drawing.Size(67, 21);
             this.comboFilaD.TabIndex = 19;
@@ -303,7 +291,7 @@
             this.comboFilaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboFilaO.Enabled = false;
             this.comboFilaO.FormattingEnabled = true;
-            this.comboFilaO.Location = new System.Drawing.Point(162, 230);
+            this.comboFilaO.Location = new System.Drawing.Point(162, 232);
             this.comboFilaO.Name = "comboFilaO";
             this.comboFilaO.Size = new System.Drawing.Size(67, 21);
             this.comboFilaO.TabIndex = 17;
@@ -314,7 +302,7 @@
             this.comboColumnaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboColumnaO.Enabled = false;
             this.comboColumnaO.FormattingEnabled = true;
-            this.comboColumnaO.Location = new System.Drawing.Point(89, 230);
+            this.comboColumnaO.Location = new System.Drawing.Point(89, 232);
             this.comboColumnaO.Name = "comboColumnaO";
             this.comboColumnaO.Size = new System.Drawing.Size(67, 21);
             this.comboColumnaO.TabIndex = 18;
@@ -356,7 +344,6 @@
         private System.Windows.Forms.Label labelNombre_Textura1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
@@ -371,7 +358,7 @@
         private System.Windows.Forms.TableLayoutPanel tabla_costos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button boton_reiniciar;
         private System.Windows.Forms.Button button3;
     }
 }
