@@ -65,7 +65,12 @@ namespace laberinto
 
         private void btnGuardarPrioridad_Click(object sender, EventArgs e)
         {
-
+           String[] matriz = new String[listBoxPrioridad.Items.Count];
+             for (int i = 0; i < listBoxPrioridad.Items.Count; i++)
+             {
+                 matriz[i] = listBoxPrioridad.Items[i].ToString();
+             }
+           // listBox_prueba.Items.AddRange(listBoxPrioridad.Items);  //para prueba
         }
     }
 }
