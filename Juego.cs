@@ -17,11 +17,13 @@ namespace laberinto
         int visita;
         private bool nonNumberEntered;
         private bool juego_previo;
+        private Form_Prioridad config_prioridad;
 
         public Formulario_Juego()
         {
             InitializeComponent();
             juego_previo = false;
+            config_prioridad = new Form_Prioridad();
         }
         private List<string[]> mostrar_ventana_cargar()
         {
@@ -91,6 +93,7 @@ namespace laberinto
             juego_iniciado = true;
             visita = 2;
             verificar_victoria();
+            enmascarar_todo();
             busqueda_profundidad();
         }
         private void busqueda_profundidad()
@@ -127,7 +130,7 @@ namespace laberinto
         }
         private List<Dictionary<string, int>> expandir_hijos(Dictionary<string, int> coordenadas_inicio, List<Dictionary<string, int>> coordenadas_visitadas)
         {
-            string[] lista_de_prioridad = { "arriba", "derecha", "abajo", "izquierda" };
+            string[] lista_de_prioridad = config_prioridad.lista_de_prioridades();
             var hijos = new List<Dictionary<string, int>>();
 
             foreach(string direccion in lista_de_prioridad)
@@ -138,16 +141,16 @@ namespace laberinto
                 
                 switch (direccion)
                 {
-                    case "arriba":        
+                    case "Arriba":        
                         coordenadas_hijo["fila"]--;
                         break;
-                    case "derecha":
+                    case "Derecha":
                         coordenadas_hijo["columna"]++;
                         break;
-                    case "abajo":
+                    case "Abajo":
                         coordenadas_hijo["fila"]++;
                         break;
-                    case "izquierda":
+                    case "Izquierda":
                         coordenadas_hijo["columna"]--;
                         break;
                     default:
@@ -168,7 +171,6 @@ namespace laberinto
             }
             return hijos;
         }
-
         private bool actualizar_costos()
         {
             for(int i = 1; i <= tablero.texturas_asignadas.Count(); i++)
@@ -256,7 +258,7 @@ namespace laberinto
                     datos = new Dictionary<string, string>();
                     t = tablero.texturaPorCoordenadas(i - 1, j - 1);
                     datos.Add("textura", t.nombre);
-                    datos.Add("visible", tablero.es_visible(i - 1, j - 1));
+                    datos.Add("visible", "1");
                     var tipo = tablero.casillaPorCoordenadas(i - 1, j - 1).tipo;
                     var casilla = new Label() { Text = "", BackColor = Color.Transparent,  Tag = datos, TextAlign = ContentAlignment.TopLeft, Dock = DockStyle.Fill };
                     info = new ToolTip();
@@ -266,6 +268,30 @@ namespace laberinto
             }
             contenedor_laberinto.Controls.Add(tabla);
             tabla.Visible = true;
+        }
+        private void enmascarar_todo()
+        {
+            for(int i = 1; i <= tablero.dimensiones["filas"]; i++)
+            {
+                for(int j = 1; j <= tablero.dimensiones["columnas"]; j++)
+                {
+                    var datos = (tabla.GetControlFromPosition(j, i).Tag) as Dictionary<string, string>;
+                    datos["visible"] = "0";
+                }
+            }
+            tabla.Update();
+        }
+        private void desenmascarar_todo()
+        {
+            for (int i = 1; i <= tablero.dimensiones["filas"]; i++)
+            {
+                for (int j = 1; j <= tablero.dimensiones["columnas"]; j++)
+                {
+                    var datos = (tabla.GetControlFromPosition(j, i).Tag) as Dictionary<string, string>;
+                    datos["visible"] = "1";
+                }
+            }
+            tabla.Update();
         }
         private void agregar_personajes_al_combo()
         {
@@ -542,7 +568,7 @@ namespace laberinto
             }
             var casilla = tabla.GetControlFromPosition(columna + 1, fila + 1) as Label;
             var dibujo = Image.FromFile(@"Recursos\meta.png");
-            casilla.Image = new Bitmap(dibujo, new Size(45, 45));
+            casilla.Image = new Bitmap(dibujo, new Size(40, 40));
         }
         private void borrar_meta()
         {
@@ -630,7 +656,6 @@ namespace laberinto
         {
             borrar_personaje(tablero.coordenadas_personaje["fila"], tablero.coordenadas_personaje["columna"]);
             mover_personaje(coordenada);
-            verificar_victoria();
         }
         private Dictionary<string,int> Calcular_coordenada(Keys tecla)
         {
@@ -722,16 +747,15 @@ namespace laberinto
             tablero.coordenadas_inicio["columna"] = -1;
             tablero.coordenadas_personaje["fila"] = -1;
             tablero.coordenadas_personaje["columna"] = -1;
+            desenmascarar_todo();
         }
         private void boton_guardar_costos_click(object sender, EventArgs e)
         {
             actualizar_costos();
         }
-
         private void prioridadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var conf = new Form_Prioridad();
-            conf.Show();
+            config_prioridad.Show();
         }
     }
 }

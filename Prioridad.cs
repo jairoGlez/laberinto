@@ -17,6 +17,19 @@ namespace laberinto
             InitializeComponent();
         }
 
+        public string[] lista_de_prioridades()
+        {
+            var lineas = listBoxPrioridad.Items;
+            string[] prioridades = new string[4];
+            int i = 0;
+            foreach(string linea in lineas)
+            {
+                prioridades[i] = linea;
+                i++;
+            }
+            return prioridades;
+        }
+
         private void btnUp_Click(object sender, EventArgs e)
         {
             if(listBoxPrioridad.SelectedIndex == -1)
@@ -65,12 +78,7 @@ namespace laberinto
 
         private void btnGuardarPrioridad_Click(object sender, EventArgs e)
         {
-           String[] matriz = new String[listBoxPrioridad.Items.Count];
-             for (int i = 0; i < listBoxPrioridad.Items.Count; i++)
-             {
-                 matriz[i] = listBoxPrioridad.Items[i].ToString();
-             }
-           // listBox_prueba.Items.AddRange(listBoxPrioridad.Items);  //para prueba
+            this.Close();
         }
     }
 }
