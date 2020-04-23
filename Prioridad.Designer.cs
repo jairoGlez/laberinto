@@ -34,7 +34,6 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.btnGuardarPrioridad = new System.Windows.Forms.Button();
-            this.listBox_prueba = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // Label_ConfiguracionTerreno
@@ -51,10 +50,10 @@
             // 
             this.listBoxPrioridad.FormattingEnabled = true;
             this.listBoxPrioridad.Items.AddRange(new object[] {
-            "1.Arriba",
-            "2.Abajo",
-            "3.Izquierda",
-            "4.Derecha"});
+            "Arriba",
+            "Abajo",
+            "Izquierda",
+            "Derecha"});
             this.listBoxPrioridad.Location = new System.Drawing.Point(31, 60);
             this.listBoxPrioridad.Name = "listBoxPrioridad";
             this.listBoxPrioridad.Size = new System.Drawing.Size(120, 95);
@@ -95,20 +94,11 @@
             this.btnGuardarPrioridad.UseVisualStyleBackColor = true;
             this.btnGuardarPrioridad.Click += new System.EventHandler(this.btnGuardarPrioridad_Click);
             // 
-            // listBox_prueba
-            // 
-            this.listBox_prueba.FormattingEnabled = true;
-            this.listBox_prueba.Location = new System.Drawing.Point(235, 90);
-            this.listBox_prueba.Name = "listBox_prueba";
-            this.listBox_prueba.Size = new System.Drawing.Size(120, 95);
-            this.listBox_prueba.TabIndex = 17;
-            // 
             // Form_Prioridad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(386, 284);
-            this.Controls.Add(this.listBox_prueba);
+            this.ClientSize = new System.Drawing.Size(268, 208);
             this.Controls.Add(this.btnGuardarPrioridad);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
@@ -128,6 +118,5 @@
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.Button btnGuardarPrioridad;
-        private System.Windows.Forms.ListBox listBox_prueba;
     }
 }
