@@ -18,12 +18,39 @@ namespace laberinto
         private bool nonNumberEntered;
         private bool juego_previo;
         private Form_Prioridad config_prioridad;
+        private List<List<string>> nodos_de_prueba;
 
         public Formulario_Juego()
         {
             InitializeComponent();
             juego_previo = false;
             config_prioridad = new Form_Prioridad();
+            nodos_de_prueba = new List<List<string>>();
+            var nodo = new List<string>();
+            nodo.Add("(D, 3) Visita: 1 Costo: 4 Inicial");
+            nodos_de_prueba.Add(nodo);
+            nodo = new List<string>();
+            nodo.Add("(D, 4) Visita: 2 Costo: 4");
+            nodos_de_prueba.Add(nodo);
+            nodo = new List<string>();
+            nodo.Add("(D, 3) Visita: 3 Costo: 4");
+            nodo.Add("(E, 3) Costo: 4 Inicial");
+            nodos_de_prueba.Add(nodo);
+            nodo = new List<string>();
+            nodo.Add("(D, 5) Visita: 4 Costo: 53");
+            nodos_de_prueba.Add(nodo);
+            nodo = new List<string>();
+            nodo.Add("(D, 2) Visita: 5 Costo: 5");
+            nodo.Add("(E, 6) Visita: 6 Costo: 4");
+            nodo.Add("(F, 5) Visita: 7 Costo: 55");
+            nodo.Add("(D, 8) Visita: 8 Costo: 23");
+            nodos_de_prueba.Add(nodo);
+            nodo = new List<string>();
+            nodo.Add("(B, 8) Visita: 9 Costo: 23 Inicial");
+            nodos_de_prueba.Add(nodo);
+            nodo = new List<string>();
+            nodo.Add("(A, 3) Visita: 10 Costo: 2 Final");
+            nodos_de_prueba.Add(nodo);
         }
         private List<string[]> mostrar_ventana_cargar()
         {
