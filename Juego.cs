@@ -51,6 +51,8 @@ namespace laberinto
             nodo = new List<string>();
             nodo.Add("(A, 3) Visita: 10 Costo: 2 Final");
             nodos_de_prueba.Add(nodo);
+
+            
         }
         private List<string[]> mostrar_ventana_cargar()
         {
@@ -620,6 +622,10 @@ namespace laberinto
             {
                 MessageBox.Show("Victoria!");
                 boton_reiniciar.Enabled = true;
+
+                var farbol = new Arbol();
+                farbol.Show();
+
                 return true;
             }
             return false;
@@ -782,7 +788,14 @@ namespace laberinto
         }
         private void prioridadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            config_prioridad.Show();
+            var fp = new Form_Prioridad();
+            fp.Show();
         }
+
+        private void llenar_arbol()
+        {
+
+        }
+
     }
 }

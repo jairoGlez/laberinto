@@ -1,7 +1,7 @@
 ﻿namespace laberinto
 {
     partial class Formulario_Juego
-    {
+    {        
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -50,10 +50,21 @@
             this.comboFilaD = new System.Windows.Forms.ComboBox();
             this.comboFilaO = new System.Windows.Forms.ComboBox();
             this.comboColumnaO = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabla_costos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -79,14 +90,14 @@
             // mapaToolStripMenuItem
             // 
             this.mapaToolStripMenuItem.Name = "mapaToolStripMenuItem";
-            this.mapaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mapaToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.mapaToolStripMenuItem.Text = "Mapa";
             this.mapaToolStripMenuItem.Click += new System.EventHandler(this.mapaToolStripMenuItem_Click);
             // 
             // prioridadToolStripMenuItem
             // 
             this.prioridadToolStripMenuItem.Name = "prioridadToolStripMenuItem";
-            this.prioridadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.prioridadToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.prioridadToolStripMenuItem.Text = "Prioridad";
             this.prioridadToolStripMenuItem.Click += new System.EventHandler(this.prioridadToolStripMenuItem_Click);
             // 
@@ -128,7 +139,7 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 227);
+            this.label2.Location = new System.Drawing.Point(12, 230);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 28);
             this.label2.TabIndex = 13;
@@ -139,7 +150,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 259);
+            this.label3.Location = new System.Drawing.Point(12, 262);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 28);
             this.label3.TabIndex = 14;
@@ -152,7 +163,7 @@
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(40, 329);
+            this.button1.Location = new System.Drawing.Point(40, 332);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(155, 71);
             this.button1.TabIndex = 15;
@@ -164,7 +175,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(17, 148);
+            this.groupBox1.Location = new System.Drawing.Point(17, 151);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(215, 76);
             this.groupBox1.TabIndex = 16;
@@ -203,13 +214,13 @@
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Location = new System.Drawing.Point(417, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 403);
+            this.panel1.Size = new System.Drawing.Size(244, 406);
             this.panel1.TabIndex = 20;
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(66, 124);
+            this.button3.Location = new System.Drawing.Point(66, 127);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 23);
             this.button3.TabIndex = 23;
@@ -221,7 +232,7 @@
             // 
             this.boton_reiniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.boton_reiniciar.Enabled = false;
-            this.boton_reiniciar.Location = new System.Drawing.Point(40, 294);
+            this.boton_reiniciar.Location = new System.Drawing.Point(40, 297);
             this.boton_reiniciar.Name = "boton_reiniciar";
             this.boton_reiniciar.Size = new System.Drawing.Size(155, 29);
             this.boton_reiniciar.TabIndex = 22;
@@ -244,8 +255,8 @@
             this.tabla_costos.Location = new System.Drawing.Point(17, 85);
             this.tabla_costos.Name = "tabla_costos";
             this.tabla_costos.RowCount = 1;
-            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tabla_costos.Size = new System.Drawing.Size(143, 33);
+            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tabla_costos.Size = new System.Drawing.Size(143, 36);
             this.tabla_costos.TabIndex = 21;
             // 
             // label1
@@ -255,7 +266,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(4, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 31);
+            this.label1.Size = new System.Drawing.Size(64, 34);
             this.label1.TabIndex = 0;
             this.label1.Text = "Terreno";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -268,7 +279,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(75, 1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 31);
+            this.label4.Size = new System.Drawing.Size(51, 34);
             this.label4.TabIndex = 1;
             this.label4.Text = "Costo";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -278,7 +289,7 @@
             this.comboColumnaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboColumnaD.Enabled = false;
             this.comboColumnaD.FormattingEnabled = true;
-            this.comboColumnaD.Location = new System.Drawing.Point(89, 265);
+            this.comboColumnaD.Location = new System.Drawing.Point(89, 268);
             this.comboColumnaD.Name = "comboColumnaD";
             this.comboColumnaD.Size = new System.Drawing.Size(67, 21);
             this.comboColumnaD.TabIndex = 20;
@@ -289,7 +300,7 @@
             this.comboFilaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboFilaD.Enabled = false;
             this.comboFilaD.FormattingEnabled = true;
-            this.comboFilaD.Location = new System.Drawing.Point(162, 265);
+            this.comboFilaD.Location = new System.Drawing.Point(162, 268);
             this.comboFilaD.Name = "comboFilaD";
             this.comboFilaD.Size = new System.Drawing.Size(67, 21);
             this.comboFilaD.TabIndex = 19;
@@ -300,7 +311,7 @@
             this.comboFilaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboFilaO.Enabled = false;
             this.comboFilaO.FormattingEnabled = true;
-            this.comboFilaO.Location = new System.Drawing.Point(162, 233);
+            this.comboFilaO.Location = new System.Drawing.Point(162, 236);
             this.comboFilaO.Name = "comboFilaO";
             this.comboFilaO.Size = new System.Drawing.Size(67, 21);
             this.comboFilaO.TabIndex = 17;
@@ -311,11 +322,66 @@
             this.comboColumnaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboColumnaO.Enabled = false;
             this.comboColumnaO.FormattingEnabled = true;
-            this.comboColumnaO.Location = new System.Drawing.Point(89, 233);
+            this.comboColumnaO.Location = new System.Drawing.Point(89, 236);
             this.comboColumnaO.Name = "comboColumnaO";
             this.comboColumnaO.Size = new System.Drawing.Size(67, 21);
             this.comboColumnaO.TabIndex = 18;
             this.comboColumnaO.SelectedIndexChanged += new System.EventHandler(this.comboColumnaO_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(129, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 28);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Prioridad:";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Location = new System.Drawing.Point(253, 31);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(62, 56);
+            this.pictureBox4.TabIndex = 25;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Location = new System.Drawing.Point(185, 31);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(62, 56);
+            this.pictureBox3.TabIndex = 24;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(117, 31);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(62, 56);
+            this.pictureBox2.TabIndex = 23;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(49, 31);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(62, 56);
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.pictureBox4);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.pictureBox3);
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Location = new System.Drawing.Point(299, 459);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(341, 100);
+            this.panel2.TabIndex = 24;
             // 
             // Formulario_Juego
             // 
@@ -323,7 +389,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(660, 430);
+            this.ClientSize = new System.Drawing.Size(660, 591);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.contenedor_laberinto);
             this.Controls.Add(this.menuStrip1);
@@ -341,6 +408,12 @@
             this.panel1.PerformLayout();
             this.tabla_costos.ResumeLayout(false);
             this.tabla_costos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,5 +443,11 @@
         private System.Windows.Forms.Button boton_reiniciar;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ToolStripMenuItem prioridadToolStripMenuItem;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

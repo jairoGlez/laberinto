@@ -76,9 +76,15 @@ namespace laberinto
             }
         }
 
-        private void btnGuardarPrioridad_Click(object sender, EventArgs e)
+        public void btnGuardarPrioridad_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
+
+                                   
+            pictureBox1.ImageLocation = "D:/Desktop/Inteligencia Artificial/Proyectoo/bin/Debug/Prioridad/" + listBoxPrioridad.Items[0] + ".png";
+            pictureBox2.ImageLocation = "D:/Desktop/Inteligencia Artificial/Proyectoo/bin/Debug/Prioridad/" + listBoxPrioridad.Items[1] + ".png";
+            pictureBox3.ImageLocation = "D:/Desktop/Inteligencia Artificial/Proyectoo/bin/Debug/Prioridad/" + listBoxPrioridad.Items[2] + ".png";
+            pictureBox4.ImageLocation = "D:/Desktop/Inteligencia Artificial/Proyectoo/bin/Debug/Prioridad/" + listBoxPrioridad.Items[3] + ".png";
         }
     }
 }
