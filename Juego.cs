@@ -25,6 +25,7 @@ namespace laberinto
             InitializeComponent();
             juego_previo = false;
             config_prioridad = new Form_Prioridad();
+            config_prioridad.FormClosing += new FormClosingEventHandler(cerrar_prioridad);
             nodos_de_prueba = new List<List<string>>();
             var nodo = new List<string>();
             nodo.Add("(D, 3) Visita: 1 Costo: 4 Inicial");
@@ -51,9 +52,15 @@ namespace laberinto
             nodo = new List<string>();
             nodo.Add("(A, 3) Visita: 10 Costo: 2 Final");
             nodos_de_prueba.Add(nodo);
-
+            poner_prioridades();
             
         }
+
+        private void cerrar_prioridad(object sender, FormClosingEventArgs e)
+        {
+            poner_prioridades();
+        }
+
         private List<string[]> mostrar_ventana_cargar()
         {
             var ventana = new Form_Inicio();
@@ -87,6 +94,8 @@ namespace laberinto
         }
         private void iniciar_configuracion()
         {
+            llenar_arbol();
+            ///////////////////////////////////////////////////////////
             var filas = mostrar_ventana_cargar();
             if (filas == null)
             {
@@ -788,13 +797,30 @@ namespace laberinto
         }
         private void prioridadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var fp = new Form_Prioridad();
-            fp.Show();
+            config_prioridad.ShowDialog();
         }
 
         private void llenar_arbol()
         {
+            var farbol = new Arbol();
+            farbol.datos = nodos_de_prueba;
+            farbol.dibujar_arbol();
+            farbol.Show();
 
+        }
+
+        private void poner_prioridades()
+        {
+            var prioridades = config_prioridad.lista_de_prioridades();
+
+            pictureBox1.ImageLocation = "Prioridad/" + prioridades[0] + ".png";
+            pictureBox1.Refresh();
+            pictureBox2.ImageLocation = "Prioridad/" + prioridades[1] + ".png";
+            pictureBox2.Refresh();
+            pictureBox3.ImageLocation = "Prioridad/" + prioridades[2] + ".png";
+            pictureBox3.Refresh();
+            pictureBox4.ImageLocation = "Prioridad/" + prioridades[3] + ".png";
+            pictureBox4.Refresh();
         }
 
     }

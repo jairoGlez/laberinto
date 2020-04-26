@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.treeViewArbolGenerado = new System.Windows.Forms.TreeView();
+            this.treeArbolGen = new System.Windows.Forms.TreeView();
             this.btnRegresar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -44,12 +44,12 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "Árbol";
             // 
-            // treeViewArbolGenerado
+            // treeArbolGen
             // 
-            this.treeViewArbolGenerado.Location = new System.Drawing.Point(27, 61);
-            this.treeViewArbolGenerado.Name = "treeViewArbolGenerado";
-            this.treeViewArbolGenerado.Size = new System.Drawing.Size(242, 314);
-            this.treeViewArbolGenerado.TabIndex = 15;
+            this.treeArbolGen.Location = new System.Drawing.Point(27, 61);
+            this.treeArbolGen.Name = "treeArbolGen";
+            this.treeArbolGen.Size = new System.Drawing.Size(242, 314);
+            this.treeArbolGen.TabIndex = 15;
             // 
             // btnRegresar
             // 
@@ -68,7 +68,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(307, 433);
             this.Controls.Add(this.btnRegresar);
-            this.Controls.Add(this.treeViewArbolGenerado);
+            this.Controls.Add(this.treeArbolGen);
             this.Controls.Add(this.label2);
             this.Name = "Arbol";
             this.Text = "Arbol";
@@ -80,7 +80,7 @@
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TreeView treeViewArbolGenerado;
+        private System.Windows.Forms.TreeView treeArbolGen;
         private System.Windows.Forms.Button btnRegresar;
     }
 }
