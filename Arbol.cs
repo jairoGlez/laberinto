@@ -13,10 +13,11 @@ namespace laberinto
     public partial class Arbol : Form
     {
         public List<List<string>> datos;
-
+        public TreeView est_arbol;
         public Arbol()
         {
             InitializeComponent();
+            est_arbol = this.treeArbolGen;
         }
 
         public void dibujar_arbol()
@@ -32,17 +33,10 @@ namespace laberinto
                     var nodoHijo = new TreeNode(hijo);
                     nodoPadre.Nodes.Add(nodoHijo);
                 }
-
                 treeArbolGen.Nodes.Add(nodoPadre);
             }
 
 
-        }
-
-        private void btnRegresar_Click(object sender, EventArgs e)
-        {
-            var fjuego = new Formulario_Juego();
-            fjuego.Show();
         }
 
     }

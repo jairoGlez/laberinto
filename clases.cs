@@ -198,6 +198,10 @@ namespace laberinto
                     {
                         g.FillRectangle(Brushes.Black, e.CellBounds.X, e.CellBounds.Y, e.CellBounds.Width, e.CellBounds.Height);
                     }
+                    if (datos.ContainsKey("ruta"))
+                    {
+                        g.DrawRectangle(Pens.YellowGreen, e.CellBounds.X, e.CellBounds.Y, e.CellBounds.Width - 1, e.CellBounds.Height - 1);
+                    }
                 }
             }
         }

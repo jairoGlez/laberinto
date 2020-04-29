@@ -15,45 +15,16 @@ namespace laberinto
         bool juego_iniciado;
         int personaje_seleccionado;
         int visita;
+        bool modo_manual;
         private bool nonNumberEntered;
-        private bool juego_previo;
         private Form_Prioridad config_prioridad;
-        private List<List<string>> nodos_de_prueba;
 
         public Formulario_Juego()
         {
             InitializeComponent();
-            juego_previo = false;
             config_prioridad = new Form_Prioridad();
-            config_prioridad.FormClosing += new FormClosingEventHandler(cerrar_prioridad);
-            nodos_de_prueba = new List<List<string>>();
-            var nodo = new List<string>();
-            nodo.Add("(D, 3) Visita: 1 Costo: 4 Inicial");
-            nodos_de_prueba.Add(nodo);
-            nodo = new List<string>();
-            nodo.Add("(D, 4) Visita: 2 Costo: 4");
-            nodos_de_prueba.Add(nodo);
-            nodo = new List<string>();
-            nodo.Add("(D, 3) Visita: 3 Costo: 4");
-            nodo.Add("(E, 3) Costo: 4 Inicial");
-            nodos_de_prueba.Add(nodo);
-            nodo = new List<string>();
-            nodo.Add("(D, 5) Visita: 4 Costo: 53");
-            nodos_de_prueba.Add(nodo);
-            nodo = new List<string>();
-            nodo.Add("(D, 2) Visita: 5 Costo: 5");
-            nodo.Add("(E, 6) Visita: 6 Costo: 4");
-            nodo.Add("(F, 5) Visita: 7 Costo: 55");
-            nodo.Add("(D, 8) Visita: 8 Costo: 23");
-            nodos_de_prueba.Add(nodo);
-            nodo = new List<string>();
-            nodo.Add("(B, 8) Visita: 9 Costo: 23 Inicial");
-            nodos_de_prueba.Add(nodo);
-            nodo = new List<string>();
-            nodo.Add("(A, 3) Visita: 10 Costo: 2 Final");
-            nodos_de_prueba.Add(nodo);
+            config_prioridad.FormClosing += new FormClosingEventHandler(cerrar_prioridad);           
             poner_prioridades();
-            
         }
 
         private void cerrar_prioridad(object sender, FormClosingEventArgs e)
@@ -94,8 +65,6 @@ namespace laberinto
         }
         private void iniciar_configuracion()
         {
-            llenar_arbol();
-            ///////////////////////////////////////////////////////////
             var filas = mostrar_ventana_cargar();
             if (filas == null)
             {
@@ -132,7 +101,19 @@ namespace laberinto
             visita = 2;
             verificar_victoria();
             enmascarar_todo();
-            busqueda_profundidad();
+            var metodo_seleccionado = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            modo_manual = false;
+            switch (metodo_seleccionado.Tag)
+            {
+                case "1":
+                    busqueda_profundidad_recursiva();
+                    break;
+                case "2":
+                    modo_manual = true;
+                    break;
+                default:
+                    break;
+            }
         }
         private void busqueda_profundidad()
         {
@@ -165,6 +146,122 @@ namespace laberinto
                 System.Threading.Thread.Sleep(500);
             }
             if (!se_llego_a_la_meta) Utilidades.mensaje_de_error("Se acabaron los posibles destinos");
+        }
+
+        private void dibujar_arbol(List<List<string>> arbol)
+        {
+            var farbol = new Arbol();
+            farbol.datos = arbol;
+            farbol.dibujar_arbol();
+            farbol.Show();
+        }
+        private void busqueda_profundidad_recursiva()
+        {
+            var coordenada_inicial = new Dictionary<string, int>(tablero.coordenadas_inicio);
+            var arbol = new TreeNode() { BackColor = Color.CornflowerBlue };
+            var visitadas = new List<Dictionary<string, int>>();
+            var ruta = new List<Dictionary<string, int>>();
+            var meta = false;
+
+            visitadas.Add(coordenada_inicial);
+            arbol.Text = coordenadas_a_texto(coordenada_inicial);
+            arbol.Text += " Visita: 1 - Inicial";
+            ruta.Add(coordenada_inicial);
+
+            desenmascarar_adyacentes(coordenada_inicial["fila"], coordenada_inicial["columna"]);
+            var hijos = expandir_hijos(coordenada_inicial, visitadas);
+
+            visitadas.AddRange(hijos);
+            var pila = new Stack<Dictionary<string, int>>(hijos);
+            while (pila.Count() > 0)
+            {
+                var hijo = pila.Pop();
+                meta = buscar_en_nodo(hijo, arbol, visitadas, ruta);
+                if (meta)
+                {
+                    break;
+                }
+            }
+            while (pila.Count() > 0)
+            {
+                arbol.Nodes.Add(new TreeNode(coordenadas_a_texto(pila.Pop())) { BackColor = Color.Gray });
+            }
+
+            if (meta)
+            {
+                pintar_rectangulos_mapa(ruta);
+                var vista_de_arbol = new Arbol();
+                arbol.ExpandAll();
+                vista_de_arbol.Width = 1000;
+                vista_de_arbol.Height = 700;
+                vista_de_arbol.est_arbol.Nodes.Add(arbol);
+                vista_de_arbol.Show();
+            }
+            else
+            {
+                Utilidades.mensaje_de_error("No existe ninguna ruta");
+                reiniciar_laberinto();
+            }
+        }
+
+        private void pintar_rectangulos_mapa(List<Dictionary<string, int>> ruta)
+        {
+            foreach (var coordenada in ruta)
+            {
+                var casilla = tabla.GetControlFromPosition(coordenada["columna"] + 1, coordenada["fila"] + 1);
+                var datos = casilla.Tag as Dictionary<string, string>;
+                datos.Add("ruta", "");
+            }
+            tabla.Refresh();
+        }
+
+        private string coordenadas_a_texto(Dictionary<string, int> coordenadas)
+        {
+            var tipo = tablero.casillaPorCoordenadas(coordenadas["fila"], coordenadas["columna"]).tipo;
+            var costo = personajes[personaje_seleccionado].costos[tipo];
+            var texto = string.Format("({0}, {1}) Costo: {2}", char.ConvertFromUtf32(65 + coordenadas["columna"]), coordenadas["fila"] + 1, costo);
+            return texto;
+        }
+        bool buscar_en_nodo(Dictionary<string, int> coordenadas, TreeNode arbol, List<Dictionary<string, int>> coordenadas_ya_enlistadas, List<Dictionary<string, int>> ruta)
+        {
+            var meta = false;
+            realizar_movimiento(coordenadas);
+            tabla.Refresh();
+            System.Threading.Thread.Sleep(200);
+            var texto = string.Format("{0} Visita: {1}", coordenadas_a_texto(coordenadas), visita);
+            var rama = new TreeNode(texto);
+
+            if (verificar_victoria())
+            {
+                rama.Text += " - Meta";
+                ruta.Add(coordenadas);
+                rama.BackColor = Color.Gold;
+                meta = true;
+            }
+            else
+            {
+                var hijos = expandir_hijos(coordenadas, coordenadas_ya_enlistadas);
+
+                coordenadas_ya_enlistadas.AddRange(hijos);
+                var pila = new Stack<Dictionary<string, int>>(hijos);
+                while (pila.Count() > 0)
+                {
+                    var hijo = pila.Pop();
+                    meta = buscar_en_nodo(hijo, rama, coordenadas_ya_enlistadas, ruta);
+                    if (meta)
+                    {
+                        ruta.Add(coordenadas);
+                        rama.BackColor = Color.YellowGreen;
+                        break;
+                    }
+                }
+                while (pila.Count() > 0)
+                {
+                    rama.Nodes.Add(new TreeNode(coordenadas_a_texto(pila.Pop())) { BackColor = Color.Gray });
+                }
+            }
+            arbol.Nodes.Add(rama);
+            return meta;
         }
         private List<Dictionary<string, int>> expandir_hijos(Dictionary<string, int> coordenadas_inicio, List<Dictionary<string, int>> coordenadas_visitadas)
         {
@@ -549,7 +646,6 @@ namespace laberinto
             var columna = tablero.coordenadas_personaje["columna"];
             var casilla = tabla.GetControlFromPosition(columna + 1, fila + 1) as Label;
             casilla.Image = null;
-            enmascarar_adyacentes(fila, columna);
             casilla.Text = "";
         }
         private bool hay_personaje_dibujado()
@@ -632,9 +728,6 @@ namespace laberinto
                 MessageBox.Show("Victoria!");
                 boton_reiniciar.Enabled = true;
 
-                var farbol = new Arbol();
-                farbol.Show();
-
                 return true;
             }
             return false;
@@ -667,7 +760,10 @@ namespace laberinto
                 for(int j = 1; j <= tablero.dimensiones["columnas"]; j++)
                 {
                     casilla = tabla.GetControlFromPosition(j, i) as Label;
-                    (casilla.Tag as Dictionary<string, string>)["visible"] = "0";
+                    var datos = casilla.Tag as Dictionary<string, string>;
+                    datos["visible"] = "0";
+                    if (datos.ContainsKey("ruta"))
+                        datos.Remove("ruta");
                     if (casilla == null || casilla.Text == "") continue;
                     casilla.Text = "";
                 }
@@ -676,7 +772,7 @@ namespace laberinto
         }
         private void Formulario_Juego_KeyDown(object sender, KeyEventArgs e)
         {
-            if (juego_iniciado)
+            if (juego_iniciado && modo_manual)
             {
                 var coordenada = Calcular_coordenada(e.KeyCode);
 
@@ -690,6 +786,7 @@ namespace laberinto
                     }
 
                     realizar_movimiento(coordenada);
+                    verificar_victoria();
                 }
             }
             e.Handled = true;
@@ -798,15 +895,6 @@ namespace laberinto
         private void prioridadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             config_prioridad.ShowDialog();
-        }
-
-        private void llenar_arbol()
-        {
-            var farbol = new Arbol();
-            farbol.datos = nodos_de_prueba;
-            farbol.dibujar_arbol();
-            farbol.Show();
-
         }
 
         private void poner_prioridades()
