@@ -60,7 +60,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(257, 216);
             this.Controls.Add(this.treeArbolGen);
             this.Controls.Add(this.label2);

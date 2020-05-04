@@ -50,6 +50,7 @@ namespace laberinto
         public void cargar_costos(Dictionary<string, Textura> codigos_asignados)
         {
             this.costos = new Dictionary<string, decimal>();
+            if (codigos_asignados == null) return;
             foreach(KeyValuePair<string, Textura>asignacion in codigos_asignados)
             {
                 costos.Add(asignacion.Key, costos_default[asignacion.Value.nombre]);

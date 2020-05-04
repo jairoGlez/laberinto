@@ -18,7 +18,9 @@ namespace laberinto
         public Dictionary<string, Textura> terrenos_valuados;
         private List<Textura> texturas;
         private List<string> texturas_seleccionadas;
+        private Dictionary<string, Bitmap> imagenes;
         public Configurador_personajes conf_p;
+        private TableLayoutPanel tabla;
         public Form_Configuracion(Dictionary<string, Textura> terrenos)
         {
             InitializeComponent();
@@ -26,17 +28,20 @@ namespace laberinto
             terrenos_valuados = new Dictionary<string, Textura>();
             texturas = new List<Textura>();
             texturas_seleccionadas = new List<string>();
-            cargar_nombres_de_texturas();
+            imagenes = new Dictionary<string, Bitmap>();
+            cargar_texturas();
             crear_controles(terrenos);
         }
-        private void cargar_nombres_de_texturas()
+        private void cargar_texturas()
         {
-            var nombres = new List<string>();
             var archivos = Directory.GetFiles("Texturas", "*.jpg");
             foreach (string ruta in archivos)
             {
                 var t = new Textura(ruta, Path.GetFileNameWithoutExtension(ruta));
                 texturas.Add(t);
+                Image imagen = Image.FromFile(ruta);
+                var miniatura = new Bitmap(imagen, new Size(25, 25));
+                imagenes.Add(t.nombre, miniatura);
             }
         }
         private string obtener_direccion_textura(string nombre)
@@ -59,7 +64,7 @@ namespace laberinto
         }
         private void remover_textura_de_lista(ComboBox seleccionado)
         {
-            var combos = panel3.Controls.OfType<ComboBox>();
+            var combos = tabla.Controls.OfType<ComboBox>();
             var seleccion_previa = seleccionado.Text;
             var opcion_a_remover = seleccionado.SelectedItem;
 
@@ -111,7 +116,7 @@ namespace laberinto
             if (todos_asignados)
             {
                 btn_SiguienteTerreno.Enabled = true;
-                var combos = panel3.Controls.OfType<ComboBox>();
+                var combos = tabla.Controls.OfType<ComboBox>();
                 terrenos_valuados.Clear();
                 foreach(var asignacion in combos)
                 {
@@ -122,38 +127,50 @@ namespace laberinto
         private void crear_controles(Dictionary<string, Textura> terrenos)
         {
             var contenedor = this.panel3;
-            var posicion_horizontal_codigos = 242;
-            var posicion_horizontal_combos = 332;
-            var posicion_vertical = 38;
-            TextBox txt_codigo_terreno;
+            Label txt_codigo_terreno;
             ComboBox combo_texturas;
+
+            tabla = new TableLayoutPanel()
+            {
+                AutoSize = true,
+                AutoSizeMode = AutoSizeMode.GrowAndShrink,
+                Dock = DockStyle.Top
+            };
+            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30f));
+            tabla.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70f));
+            tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 20));
+            tabla.ColumnCount = 2;
+            tabla.RowCount = 1;
+            tabla.Controls.Add(new Label() { Text = "Codigo", Dock = DockStyle.Bottom });
+            tabla.Controls.Add(new Label() { Text = "Textura", Dock = DockStyle.Bottom });
 
             foreach (KeyValuePair<string,Textura> terreno in terrenos)
             {
                 var lista_de_texturas = obtener_lista_de_texturas();
-                txt_codigo_terreno = new TextBox()
+                txt_codigo_terreno = new Label()
                 {
-                    ReadOnly = true,
-                    Size = new Size(50, 32),
-                    Location = new Point(posicion_horizontal_codigos, posicion_vertical),
-                    Text = terreno.Key
+                    Text = terreno.Key,
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter
                 };
                 combo_texturas = new ComboBox()
                 {
                     Name = terreno.Key,
-                    Size = new Size(195, 32),
-                    Location = new Point(posicion_horizontal_combos, posicion_vertical),
                     DropDownStyle = ComboBoxStyle.DropDownList,
                     DrawMode = DrawMode.OwnerDrawFixed,
-                    ItemHeight = 32
+                    Dock = DockStyle.Fill,
+                    ItemHeight = 25
                 };
                 combo_texturas.Items.AddRange(lista_de_texturas);
                 combo_texturas.SelectionChangeCommitted += new System.EventHandler(cambio_de_seleccion);
-                combo_texturas.DrawItem += new DrawItemEventHandler(dibujar_items_combo_texturas); 
-                contenedor.Controls.Add(txt_codigo_terreno);
-                contenedor.Controls.Add(combo_texturas);
-                posicion_vertical += 38;
+                combo_texturas.DrawItem += new DrawItemEventHandler(dibujar_items_combo_texturas);
+
+                tabla.Controls.Add(txt_codigo_terreno);
+                tabla.Controls.Add(combo_texturas);
+                tabla.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
+                tabla.RowCount += 1;
             }
+            contenedor.Controls.Add(tabla);
         }
         private void dibujar_items_combo_texturas(object sender, DrawItemEventArgs e)
         {
@@ -165,8 +182,7 @@ namespace laberinto
                 var nombre_de_textura = opcion as string;
                 if (e.Index < texturas.Count)
                 {
-                    Image textura = Image.FromFile(obtener_direccion_textura(nombre_de_textura));
-                    var miniatura = new Bitmap(textura, new Size(32, 32));
+                    var miniatura = imagenes[nombre_de_textura];
                     e.Graphics.DrawImage(miniatura, new PointF(e.Bounds.Left, e.Bounds.Top));
                 }
                 e.Graphics.DrawString(nombre_de_textura, e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + 32, e.Bounds.Top);

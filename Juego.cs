@@ -513,7 +513,7 @@ namespace laberinto
                 if (e.Index < personajes.Length)
                 {
                     Image avatar = Image.FromFile(personajes[e.Index].archivo);
-                    var miniatura = new Bitmap(avatar, new Size(32, 32));
+                    var miniatura = new Bitmap(avatar, new Size(30, 30));
                     e.Graphics.DrawImage(miniatura, new PointF(e.Bounds.Left, e.Bounds.Top));
                 }
                 e.Graphics.DrawString(nombre_de_avatar, e.Font, new SolidBrush(e.ForeColor), e.Bounds.Left + 32, e.Bounds.Top);
@@ -526,14 +526,18 @@ namespace laberinto
             {
                 opciones.Add((i + 1).ToString()); 
             }
+            comboFilaO.Items.Clear();
             comboFilaO.Items.AddRange(opciones.ToArray());
+            comboFilaD.Items.Clear();
             comboFilaD.Items.AddRange(opciones.ToArray());
             opciones.Clear();
             for (int i = 0; i < tablero.dimensiones["columnas"]; i++)
             {
                 opciones.Add(char.ConvertFromUtf32(65 + i));
             }
+            comboColumnaO.Items.Clear();
             comboColumnaO.Items.AddRange(opciones.ToArray());
+            comboColumnaD.Items.Clear();
             comboColumnaD.Items.AddRange(opciones.ToArray());
         }
         private void dibujar_personaje(int fila, int columna)
@@ -701,15 +705,21 @@ namespace laberinto
                 return;
             }
             var casilla = tabla.GetControlFromPosition(columna + 1, fila + 1) as Label;
+            var datos = casilla.Tag as Dictionary<string, string>;
+            datos["visible"] = "1";
             var dibujo = Image.FromFile(@"Recursos\meta.png");
             casilla.Image = new Bitmap(dibujo, new Size(40, 40));
+            tabla.Update();
         }
         private void borrar_meta()
         {
             var fila = tablero.coordenadas_fin["fila"];
             var columna = tablero.coordenadas_fin["columna"];
             var casilla = tabla.GetControlFromPosition(columna + 1, fila + 1) as Label;
+            var datos = casilla.Tag as Dictionary<string, string>;
+            datos["visible"] = "0";
             casilla.Image = null;
+            tabla.Update();
         }
         private bool hay_meta_dibujada()
         {
