@@ -34,11 +34,12 @@
             this.prioridadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelNombre_Textura1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton_Euclidiana = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton_Manhattan = new System.Windows.Forms.RadioButton();
             this.contenedor_laberinto = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
@@ -56,7 +57,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.comboBox_Algoritmo_Busqueda = new System.Windows.Forms.ComboBox();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -123,24 +124,25 @@
             this.comboBox1.Size = new System.Drawing.Size(215, 21);
             this.comboBox1.TabIndex = 9;
             // 
-            // radioButton1
+            // radioButton_Euclidiana
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 19);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(82, 17);
-            this.radioButton1.TabIndex = 11;
-            this.radioButton1.Tag = "1";
-            this.radioButton1.Text = "Profundidad";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton_Euclidiana.AutoSize = true;
+            this.radioButton_Euclidiana.Checked = true;
+            this.radioButton_Euclidiana.Location = new System.Drawing.Point(6, 19);
+            this.radioButton_Euclidiana.Name = "radioButton_Euclidiana";
+            this.radioButton_Euclidiana.Size = new System.Drawing.Size(74, 17);
+            this.radioButton_Euclidiana.TabIndex = 11;
+            this.radioButton_Euclidiana.TabStop = true;
+            this.radioButton_Euclidiana.Tag = "1";
+            this.radioButton_Euclidiana.Text = "Euclidiana";
+            this.radioButton_Euclidiana.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 270);
+            this.label2.Location = new System.Drawing.Point(12, 271);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 28);
             this.label2.TabIndex = 13;
@@ -151,7 +153,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 302);
+            this.label3.Location = new System.Drawing.Point(12, 303);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 28);
             this.label3.TabIndex = 14;
@@ -164,7 +166,7 @@
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(40, 372);
+            this.button1.Location = new System.Drawing.Point(40, 373);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(155, 71);
             this.button1.TabIndex = 15;
@@ -175,14 +177,26 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Location = new System.Drawing.Point(17, 157);
+            this.groupBox1.Controls.Add(this.comboBox_Algoritmo_Busqueda);
+            this.groupBox1.Controls.Add(this.radioButton_Manhattan);
+            this.groupBox1.Controls.Add(this.radioButton_Euclidiana);
+            this.groupBox1.Location = new System.Drawing.Point(17, 158);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(215, 96);
+            this.groupBox1.Size = new System.Drawing.Size(215, 98);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Algoritmo";
+            // 
+            // radioButton_Manhattan
+            // 
+            this.radioButton_Manhattan.AutoSize = true;
+            this.radioButton_Manhattan.Location = new System.Drawing.Point(6, 42);
+            this.radioButton_Manhattan.Name = "radioButton_Manhattan";
+            this.radioButton_Manhattan.Size = new System.Drawing.Size(76, 17);
+            this.radioButton_Manhattan.TabIndex = 12;
+            this.radioButton_Manhattan.Tag = "2";
+            this.radioButton_Manhattan.Text = "Manhattan";
+            this.radioButton_Manhattan.UseVisualStyleBackColor = true;
             // 
             // contenedor_laberinto
             // 
@@ -217,13 +231,13 @@
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Location = new System.Drawing.Point(417, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 446);
+            this.panel1.Size = new System.Drawing.Size(244, 447);
             this.panel1.TabIndex = 20;
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(17, 128);
+            this.button3.Location = new System.Drawing.Point(17, 129);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 23);
             this.button3.TabIndex = 23;
@@ -235,7 +249,7 @@
             // 
             this.boton_reiniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.boton_reiniciar.Enabled = false;
-            this.boton_reiniciar.Location = new System.Drawing.Point(40, 337);
+            this.boton_reiniciar.Location = new System.Drawing.Point(40, 338);
             this.boton_reiniciar.Name = "boton_reiniciar";
             this.boton_reiniciar.Size = new System.Drawing.Size(155, 29);
             this.boton_reiniciar.TabIndex = 22;
@@ -258,8 +272,8 @@
             this.tabla_costos.Location = new System.Drawing.Point(17, 85);
             this.tabla_costos.Name = "tabla_costos";
             this.tabla_costos.RowCount = 1;
-            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tabla_costos.Size = new System.Drawing.Size(143, 37);
+            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tabla_costos.Size = new System.Drawing.Size(143, 38);
             this.tabla_costos.TabIndex = 21;
             // 
             // label1
@@ -269,7 +283,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(4, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 35);
+            this.label1.Size = new System.Drawing.Size(64, 36);
             this.label1.TabIndex = 0;
             this.label1.Text = "Terreno";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -282,7 +296,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(75, 1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 35);
+            this.label4.Size = new System.Drawing.Size(51, 36);
             this.label4.TabIndex = 1;
             this.label4.Text = "Costo";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -292,7 +306,7 @@
             this.comboColumnaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboColumnaD.Enabled = false;
             this.comboColumnaD.FormattingEnabled = true;
-            this.comboColumnaD.Location = new System.Drawing.Point(89, 308);
+            this.comboColumnaD.Location = new System.Drawing.Point(89, 309);
             this.comboColumnaD.Name = "comboColumnaD";
             this.comboColumnaD.Size = new System.Drawing.Size(67, 21);
             this.comboColumnaD.TabIndex = 20;
@@ -303,7 +317,7 @@
             this.comboFilaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboFilaD.Enabled = false;
             this.comboFilaD.FormattingEnabled = true;
-            this.comboFilaD.Location = new System.Drawing.Point(162, 308);
+            this.comboFilaD.Location = new System.Drawing.Point(162, 309);
             this.comboFilaD.Name = "comboFilaD";
             this.comboFilaD.Size = new System.Drawing.Size(67, 21);
             this.comboFilaD.TabIndex = 19;
@@ -314,7 +328,7 @@
             this.comboFilaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboFilaO.Enabled = false;
             this.comboFilaO.FormattingEnabled = true;
-            this.comboFilaO.Location = new System.Drawing.Point(162, 276);
+            this.comboFilaO.Location = new System.Drawing.Point(162, 277);
             this.comboFilaO.Name = "comboFilaO";
             this.comboFilaO.Size = new System.Drawing.Size(67, 21);
             this.comboFilaO.TabIndex = 17;
@@ -325,7 +339,7 @@
             this.comboColumnaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboColumnaO.Enabled = false;
             this.comboColumnaO.FormattingEnabled = true;
-            this.comboColumnaO.Location = new System.Drawing.Point(89, 276);
+            this.comboColumnaO.Location = new System.Drawing.Point(89, 277);
             this.comboColumnaO.Name = "comboColumnaO";
             this.comboColumnaO.Size = new System.Drawing.Size(67, 21);
             this.comboColumnaO.TabIndex = 18;
@@ -390,16 +404,13 @@
             this.panel2.Size = new System.Drawing.Size(243, 91);
             this.panel2.TabIndex = 24;
             // 
-            // radioButton2
+            // comboBox_Algoritmo_Busqueda
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(6, 42);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(60, 17);
-            this.radioButton2.TabIndex = 12;
-            this.radioButton2.Tag = "2";
-            this.radioButton2.Text = "Manual";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.comboBox_Algoritmo_Busqueda.FormattingEnabled = true;
+            this.comboBox_Algoritmo_Busqueda.Location = new System.Drawing.Point(6, 65);
+            this.comboBox_Algoritmo_Busqueda.Name = "comboBox_Algoritmo_Busqueda";
+            this.comboBox_Algoritmo_Busqueda.Size = new System.Drawing.Size(203, 21);
+            this.comboBox_Algoritmo_Busqueda.TabIndex = 13;
             // 
             // Formulario_Juego
             // 
@@ -443,7 +454,7 @@
         private System.Windows.Forms.ToolStripMenuItem configuraciónToolStripMenuItem;
         private System.Windows.Forms.Label labelNombre_Textura1;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton_Euclidiana;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
@@ -467,6 +478,7 @@
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton_Manhattan;
+        private System.Windows.Forms.ComboBox comboBox_Algoritmo_Busqueda;
     }
 }
