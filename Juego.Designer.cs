@@ -39,6 +39,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboBox_Algoritmo_Busqueda = new System.Windows.Forms.ComboBox();
             this.radioButton_Manhattan = new System.Windows.Forms.RadioButton();
             this.contenedor_laberinto = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,9 +60,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox_Algoritmo_Busqueda = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -128,18 +128,16 @@
             // 
             // radioButton_Euclidiana
             // 
-
             this.radioButton_Euclidiana.AutoSize = true;
             this.radioButton_Euclidiana.Checked = true;
-            this.radioButton_Euclidiana.Location = new System.Drawing.Point(4, 88);
+            this.radioButton_Euclidiana.Location = new System.Drawing.Point(8, 88);
             this.radioButton_Euclidiana.Name = "radioButton_Euclidiana";
             this.radioButton_Euclidiana.Size = new System.Drawing.Size(74, 17);
             this.radioButton_Euclidiana.TabIndex = 11;
             this.radioButton_Euclidiana.TabStop = true;
-            this.radioButton_Euclidiana.Tag = "1";
+            this.radioButton_Euclidiana.Tag = "Euclidiana";
             this.radioButton_Euclidiana.Text = "Euclidiana";
             this.radioButton_Euclidiana.UseVisualStyleBackColor = true;
-
             // 
             // label2
             // 
@@ -147,7 +145,6 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 323);
-
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 28);
             this.label2.TabIndex = 13;
@@ -159,7 +156,6 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(12, 355);
-
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 28);
             this.label3.TabIndex = 14;
@@ -183,32 +179,62 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.comboBox_Algoritmo_Busqueda);
             this.groupBox1.Controls.Add(this.radioButton_Manhattan);
             this.groupBox1.Controls.Add(this.radioButton_Euclidiana);
-            this.groupBox1.Location = new System.Drawing.Point(17, 158);
-
+            this.groupBox1.Location = new System.Drawing.Point(17, 178);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(215, 142);
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Algoritmo";
             // 
-
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(2, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(75, 21);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "Busquedas:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(4, 64);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(57, 21);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Medida:";
+            // 
+            // comboBox_Algoritmo_Busqueda
+            // 
+            this.comboBox_Algoritmo_Busqueda.FormattingEnabled = true;
+            this.comboBox_Algoritmo_Busqueda.Items.AddRange(new object[] {
+            "Manual",
+            "Profundidad",
+            "Coste uniforme",
+            "Voraz primero el mejor",
+            "A*"});
+            this.comboBox_Algoritmo_Busqueda.Location = new System.Drawing.Point(6, 40);
+            this.comboBox_Algoritmo_Busqueda.Name = "comboBox_Algoritmo_Busqueda";
+            this.comboBox_Algoritmo_Busqueda.Size = new System.Drawing.Size(203, 21);
+            this.comboBox_Algoritmo_Busqueda.TabIndex = 13;
+            // 
             // radioButton_Manhattan
             // 
             this.radioButton_Manhattan.AutoSize = true;
-            this.radioButton_Manhattan.Location = new System.Drawing.Point(4, 111);
+            this.radioButton_Manhattan.Location = new System.Drawing.Point(8, 111);
             this.radioButton_Manhattan.Name = "radioButton_Manhattan";
             this.radioButton_Manhattan.Size = new System.Drawing.Size(76, 17);
             this.radioButton_Manhattan.TabIndex = 12;
-            this.radioButton_Manhattan.Tag = "2";
+            this.radioButton_Manhattan.Tag = "Manhattan";
             this.radioButton_Manhattan.Text = "Manhattan";
             this.radioButton_Manhattan.UseVisualStyleBackColor = true;
-
             // 
             // contenedor_laberinto
             // 
@@ -227,8 +253,6 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.comboDistancias);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.boton_reiniciar);
             this.panel1.Controls.Add(this.tabla_costos);
@@ -250,9 +274,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-
-            this.button3.Location = new System.Drawing.Point(17, 129);
-
+            this.button3.Location = new System.Drawing.Point(17, 149);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 23);
             this.button3.TabIndex = 23;
@@ -287,8 +309,8 @@
             this.tabla_costos.Location = new System.Drawing.Point(17, 85);
             this.tabla_costos.Name = "tabla_costos";
             this.tabla_costos.RowCount = 1;
-            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tabla_costos.Size = new System.Drawing.Size(143, 38);
+            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tabla_costos.Size = new System.Drawing.Size(143, 39);
             this.tabla_costos.TabIndex = 21;
             // 
             // label1
@@ -298,7 +320,7 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(4, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 36);
+            this.label1.Size = new System.Drawing.Size(64, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Terreno";
             this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -311,7 +333,7 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(75, 1);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 36);
+            this.label4.Size = new System.Drawing.Size(51, 37);
             this.label4.TabIndex = 1;
             this.label4.Text = "Costo";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -321,9 +343,7 @@
             this.comboColumnaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboColumnaD.Enabled = false;
             this.comboColumnaD.FormattingEnabled = true;
-
             this.comboColumnaD.Location = new System.Drawing.Point(89, 361);
-
             this.comboColumnaD.Name = "comboColumnaD";
             this.comboColumnaD.Size = new System.Drawing.Size(67, 21);
             this.comboColumnaD.TabIndex = 20;
@@ -334,7 +354,6 @@
             this.comboFilaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboFilaD.Enabled = false;
             this.comboFilaD.FormattingEnabled = true;
-
             this.comboFilaD.Location = new System.Drawing.Point(162, 361);
             this.comboFilaD.Name = "comboFilaD";
             this.comboFilaD.Size = new System.Drawing.Size(67, 21);
@@ -347,7 +366,6 @@
             this.comboFilaO.Enabled = false;
             this.comboFilaO.FormattingEnabled = true;
             this.comboFilaO.Location = new System.Drawing.Point(162, 329);
-
             this.comboFilaO.Name = "comboFilaO";
             this.comboFilaO.Size = new System.Drawing.Size(67, 21);
             this.comboFilaO.TabIndex = 17;
@@ -358,7 +376,6 @@
             this.comboColumnaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.comboColumnaO.Enabled = false;
             this.comboColumnaO.FormattingEnabled = true;
-
             this.comboColumnaO.Location = new System.Drawing.Point(89, 329);
             this.comboColumnaO.Name = "comboColumnaO";
             this.comboColumnaO.Size = new System.Drawing.Size(67, 21);
@@ -423,35 +440,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(243, 91);
             this.panel2.TabIndex = 24;
-            // 
-
-            // comboBox_Algoritmo_Busqueda
-            // 
-            this.comboBox_Algoritmo_Busqueda.FormattingEnabled = true;
-            this.comboBox_Algoritmo_Busqueda.Location = new System.Drawing.Point(6, 40);
-            this.comboBox_Algoritmo_Busqueda.Name = "comboBox_Algoritmo_Busqueda";
-            this.comboBox_Algoritmo_Busqueda.Size = new System.Drawing.Size(203, 21);
-            this.comboBox_Algoritmo_Busqueda.TabIndex = 13;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 64);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 21);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Medida:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe Print", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(6, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(75, 21);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "Busquedas:";
             // 
             // Formulario_Juego
             // 

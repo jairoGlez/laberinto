@@ -28,7 +28,7 @@ namespace laberinto
             config_prioridad = new Form_Prioridad();
             config_prioridad.FormClosing += new FormClosingEventHandler(cerrar_prioridad);
             poner_prioridades();
-            comboDistancias.SelectedIndex = 0;
+            comboBox_Algoritmo_Busqueda.SelectedIndex = 0;
             var dibujo = Image.FromFile(@"Recursos\meta.png");
             imagen_meta = new Bitmap(dibujo, new Size(35, 35));
         }
@@ -102,24 +102,32 @@ namespace laberinto
         }
         private void button_Jugar_Click(object sender, EventArgs e)
         {
-            if(!actualizar_costos()) return;
-            tipo_distancia = comboDistancias.SelectedItem.ToString();
+            if(!actualizar_costos()) return; 
+            tipo_distancia = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked).Tag as string;
             bloquear_controles();
             this.Focus();
             juego_iniciado = true;
             visita = 2;
             verificar_victoria();
             enmascarar_todo();
-            var metodo_seleccionado = groupBox1.Controls.OfType<RadioButton>().FirstOrDefault(r => r.Checked);
+            var metodo_seleccionado = comboBox_Algoritmo_Busqueda.SelectedItem.ToString();
             modo_manual = false;
-            switch (metodo_seleccionado.Tag)
+            switch (metodo_seleccionado)
             {
-                case "1":
-                    voraz_primero_el_mejor();
-                    //busqueda_profundidad_recursiva();
+                case "Profundidad":
+                    busqueda_profundidad_recursiva();
                     break;
-                case "2":
+                case "Manual":
                     modo_manual = true;
+                    break;
+                case "Voraz primero el mejor":
+                    voraz_primero_el_mejor();
+                    break;
+                case "Coste unifirme":
+                    
+                    break;
+                case "A*":
+                    
                     break;
                 default:
                     break;
