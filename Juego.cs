@@ -199,13 +199,14 @@ namespace laberinto
             var coordenada_inicial = tablero.coordenadas_inicio;
             arbol.Text = coordenadas_a_texto_distancia(coordenada_inicial);
             arbol.Text += " Visita: 1 - Inicial";
-            arbol.Tag = coordenada_inicial;
-
-            visitados.Add(arbol);
-            desenmascarar_adyacentes(coordenada_inicial["fila"], coordenada_inicial["columna"]);
             var coordenada_raiz = new Dictionary<string, decimal>();
             coordenada_raiz.Add("fila", coordenada_inicial["fila"]);
             coordenada_raiz.Add("columna", coordenada_inicial["columna"]);
+            arbol.Tag = coordenada_raiz;
+
+
+            visitados.Add(arbol);
+            desenmascarar_adyacentes(coordenada_inicial["fila"], coordenada_inicial["columna"]);
             var hijos = expandir_hijos_coste_uniforme(coordenada_raiz, visitados, por_visitar);
             foreach (var coordenadas_hijo in hijos)
             {
@@ -265,7 +266,7 @@ namespace laberinto
             }
             if (nodo_final != null)
             {
-                pintar_rectangulos_mapa(generar_ruta(nodo_final));
+                pintar_rectangulos_mapa(generar_ruta_cu(nodo_final));
                 var vista_de_arbol = new Arbol();
                 arbol.ExpandAll();
                 vista_de_arbol.Width = 1000;
@@ -349,6 +350,32 @@ namespace laberinto
                 Utilidades.mensaje_de_error("No existe ninguna ruta");
                 reiniciar_laberinto();
             }
+        }
+
+        private List<Dictionary<string, int>> generar_ruta_cu(TreeNode nodo_final)
+        {
+            var ruta = new List<Dictionary<string, int>>();
+            var nodo = nodo_final;
+            Dictionary<string, int> aux;
+            Dictionary<string, decimal> valores_decimal;
+
+            while (nodo.Parent != null)
+            {
+                nodo.BackColor = Color.YellowGreen;
+                aux = new Dictionary<string, int>();
+                valores_decimal =  nodo.Tag as Dictionary<string, decimal>;
+                aux.Add("fila", (int)valores_decimal["fila"]);
+                aux.Add("columna", (int)valores_decimal["columna"]);
+
+                ruta.Add(aux);
+                nodo = nodo.Parent;
+            }
+            aux = new Dictionary<string, int>();
+            valores_decimal = nodo.Tag as Dictionary<string, decimal>;
+            aux.Add("fila", (int)valores_decimal["fila"]);
+            aux.Add("columna", (int)valores_decimal["columna"]);
+            ruta.Add(aux);
+            return ruta;
         }
 
         private List<Dictionary<string, int>> generar_ruta(TreeNode nodo_final)
