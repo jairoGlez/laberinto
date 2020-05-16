@@ -30,6 +30,7 @@ namespace laberinto
         public string archivo;
         public Dictionary<string, decimal> costos;
         private Dictionary<string, decimal> costos_default;
+        public Bitmap imagen;
         public Personaje(string nombre_del_archivo)
         {
             this.nombre = Path.GetFileNameWithoutExtension(nombre_del_archivo);
