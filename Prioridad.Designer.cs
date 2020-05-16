@@ -98,7 +98,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(268, 208);
+            this.ClientSize = new System.Drawing.Size(273, 208);
             this.Controls.Add(this.btnGuardarPrioridad);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);

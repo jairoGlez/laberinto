@@ -30,6 +30,7 @@ namespace laberinto
         public string archivo;
         public Dictionary<string, decimal> costos;
         private Dictionary<string, decimal> costos_default;
+        public Bitmap imagen;
         public Personaje(string nombre_del_archivo)
         {
             this.nombre = Path.GetFileNameWithoutExtension(nombre_del_archivo);
@@ -50,6 +51,7 @@ namespace laberinto
         public void cargar_costos(Dictionary<string, Textura> codigos_asignados)
         {
             this.costos = new Dictionary<string, decimal>();
+            if (codigos_asignados == null) return;
             foreach(KeyValuePair<string, Textura>asignacion in codigos_asignados)
             {
                 costos.Add(asignacion.Key, costos_default[asignacion.Value.nombre]);
@@ -197,6 +199,10 @@ namespace laberinto
                     else
                     {
                         g.FillRectangle(Brushes.Black, e.CellBounds.X, e.CellBounds.Y, e.CellBounds.Width, e.CellBounds.Height);
+                    }
+                    if (datos.ContainsKey("ruta"))
+                    {
+                        g.DrawRectangle(Pens.YellowGreen, e.CellBounds.X, e.CellBounds.Y, e.CellBounds.Width - 1, e.CellBounds.Height - 1);
                     }
                 }
             }
