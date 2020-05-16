@@ -123,8 +123,8 @@ namespace laberinto
                 case "Voraz primero el mejor":
                     voraz_primero_el_mejor();
                     break;
-                case "Coste unifirme":
-                    
+                case "Coste uniforme":
+                    coste_uniforme();                    
                     break;
                 case "A*":
                     
@@ -188,6 +188,98 @@ namespace laberinto
             farbol.dibujar_arbol();
             farbol.Show();
         }
+
+        private void coste_uniforme()
+        {
+            var arbol = new TreeNode() { BackColor = Color.CornflowerBlue };
+            var visitados = new List<TreeNode>();
+            var por_visitar = new List<TreeNode>();
+            TreeNode nodo_actual = null;
+            TreeNode nodo_final = null;
+            var coordenada_inicial = tablero.coordenadas_inicio;
+            arbol.Text = coordenadas_a_texto_distancia(coordenada_inicial);
+            arbol.Text += " Visita: 1 - Inicial";
+            arbol.Tag = coordenada_inicial;
+
+            visitados.Add(arbol);
+            desenmascarar_adyacentes(coordenada_inicial["fila"], coordenada_inicial["columna"]);
+            var coordenada_raiz = new Dictionary<string, decimal>();
+            coordenada_raiz.Add("fila", coordenada_inicial["fila"]);
+            coordenada_raiz.Add("columna", coordenada_inicial["columna"]);
+            var hijos = expandir_hijos_coste_uniforme(coordenada_raiz, visitados, por_visitar);
+            foreach (var coordenadas_hijo in hijos)
+            {
+                var nodo_hijo = new TreeNode(coordenadas_a_texto(coordenadas_hijo)) { BackColor = Color.Gray };
+                var datos = new Dictionary<string, decimal>();
+                datos.Add("fila", coordenadas_hijo["fila"]);
+                datos.Add("columna", coordenadas_hijo["columna"]);
+                var tipo = tablero.casillaPorCoordenadas(coordenadas_hijo["fila"], coordenadas_hijo["columna"]).tipo;
+                var costo = personajes[personaje_seleccionado].costos[tipo];
+                datos.Add("acumulado", costo);
+                nodo_hijo.Tag = datos;
+                arbol.Nodes.Add(nodo_hijo);
+                insertar_en_orden_coste_uniforme(nodo_hijo, por_visitar);
+            }
+
+            while (por_visitar.Count > 0)
+            {
+                nodo_actual = por_visitar.First();
+                por_visitar.Remove(nodo_actual);
+                var coordenadas = nodo_actual.Tag as Dictionary<string, decimal>;
+
+                nodo_actual.Text += " Visita: " + visita.ToString();
+
+                var coordenadas_int = new Dictionary<string, int>();
+                coordenadas_int.Add("fila",(int)coordenadas["fila"]);
+                coordenadas_int.Add("columna", (int)coordenadas["columna"]);
+                realizar_movimiento(coordenadas_int);
+                if (verificar_victoria())
+                {
+                    nodo_actual.BackColor = Color.Gold;
+                    nodo_final = nodo_actual;
+                    break;
+                }
+                else
+                {
+                    visitados.Add(nodo_actual);
+                    nodo_actual.BackColor = Color.White;
+                    hijos = expandir_hijos_coste_uniforme(coordenadas, visitados, por_visitar);
+                    foreach (var coordenadas_hijo in hijos)
+                    {
+                        var nodo_hijo = new TreeNode(coordenadas_a_texto(coordenadas_hijo)) { BackColor = Color.Gray };
+                        var datos = new Dictionary<string, decimal>();
+                        datos.Add("fila", coordenadas_hijo["fila"]);
+                        datos.Add("columna", coordenadas_hijo["columna"]);
+                        var tipo = tablero.casillaPorCoordenadas(coordenadas_hijo["fila"], coordenadas_hijo["columna"]).tipo;
+                        var costo = personajes[personaje_seleccionado].costos[tipo];
+                        var datos_padre = nodo_actual.Tag as Dictionary<string, decimal>;
+                        datos.Add("acumulado", costo + datos_padre["acumulado"]);
+                        nodo_hijo.Tag = datos;
+                        nodo_actual.Nodes.Add(nodo_hijo);
+                        insertar_en_orden_coste_uniforme(nodo_hijo, por_visitar);
+                  
+                    }
+                    tabla.Refresh();
+                    System.Threading.Thread.Sleep(200);
+                }
+            }
+            if (nodo_final != null)
+            {
+                pintar_rectangulos_mapa(generar_ruta(nodo_final));
+                var vista_de_arbol = new Arbol();
+                arbol.ExpandAll();
+                vista_de_arbol.Width = 1000;
+                vista_de_arbol.Height = 700;
+                vista_de_arbol.est_arbol.Nodes.Add(arbol);
+                vista_de_arbol.Show();
+            }
+            else
+            {
+                Utilidades.mensaje_de_error("No existe ninguna ruta");
+                reiniciar_laberinto();
+            }
+        }
+
         private void voraz_primero_el_mejor()
         {
             var arbol = new TreeNode() { BackColor = Color.CornflowerBlue };
@@ -271,6 +363,53 @@ namespace laberinto
             }
             ruta.Add(nodo.Tag as Dictionary<string, int>);
             return ruta;
+        }
+
+        private void insertar_en_orden_coste_uniforme(TreeNode hijo, List<TreeNode> por_visitar)
+        {
+            int posicion = 0;
+            bool es_mejor = true;
+            TreeNode reemplazar = null;
+            var acumulado = (hijo.Tag as Dictionary<string, decimal>)["acumulado"];
+
+            foreach (var nodo in por_visitar)
+            {
+                if (acumulado < (nodo.Tag as Dictionary<string, decimal>)["acumulado"])
+                {
+                    break;
+                }
+                posicion++;
+            }
+
+            var datos_hijo = hijo.Tag as Dictionary<string, decimal>;
+            foreach (var nodo in por_visitar)
+            {
+                var datos = nodo.Tag as Dictionary<string, decimal>;
+
+                if (datos_hijo["fila"] == datos["fila"] && datos["columna"] == datos["columna"])
+                {
+                    if (datos_hijo["acumulado"] < datos["acumulado"])
+                    {
+                        reemplazar = nodo;
+                        break;
+                    }
+                    else
+                    {
+                        es_mejor = false;
+                    }
+                    
+                }
+                
+            }
+            if (es_mejor)
+            {
+                por_visitar.Insert(posicion, hijo);
+                if(reemplazar != null)
+                {
+                    por_visitar.Remove(reemplazar);
+                }
+            }
+
         }
 
         private void insertar_en_orden(TreeNode hijo, List<TreeNode> por_visitar)
@@ -441,6 +580,59 @@ namespace laberinto
                     }
 
                     if(!ya_fue_visitada) hijos.Add(coordenadas_hijo);
+                }
+            }
+            return hijos;
+        }
+
+        private List<Dictionary<string, int>> expandir_hijos_coste_uniforme(Dictionary<string, decimal> coordenadas_inicio, List<TreeNode> visitadas, List<TreeNode> por_visitar)
+        {
+            string[] lista_de_prioridad = config_prioridad.lista_de_prioridades();
+            var hijos = new List<Dictionary<string, int>>();
+
+            foreach (string direccion in lista_de_prioridad)
+            {
+                var coordenadas_hijo = new Dictionary<string, int>();
+                coordenadas_hijo["fila"] = (int)coordenadas_inicio["fila"];
+                coordenadas_hijo["columna"] = (int)coordenadas_inicio["columna"];
+
+                switch (direccion)
+                {
+                    case "Arriba":
+                        coordenadas_hijo["fila"]--;
+                        break;
+                    case "Derecha":
+                        coordenadas_hijo["columna"]++;
+                        break;
+                    case "Abajo":
+                        coordenadas_hijo["fila"]++;
+                        break;
+                    case "Izquierda":
+                        coordenadas_hijo["columna"]--;
+                        break;
+                    default:
+                        break;
+                }
+
+                if (es_coordenada_valida(coordenadas_hijo) && es_habitable(coordenadas_hijo))
+                {
+                    var ya_fue_visitada = false;
+                    
+                    foreach (var visitada in visitadas)
+                    {
+                        var coordenadas_visitadas = visitada.Tag as Dictionary<string, decimal>;
+                        if ((int)coordenadas_visitadas["fila"] == coordenadas_hijo["fila"] && (int)coordenadas_visitadas["columna"] == coordenadas_hijo["columna"])
+                        {
+                            ya_fue_visitada = true;
+                            break;
+                        }
+
+                    }
+
+                    if (!ya_fue_visitada)
+                    {
+                        hijos.Add(coordenadas_hijo);
+                    }
                 }
             }
             return hijos;
