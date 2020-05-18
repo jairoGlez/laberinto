@@ -529,7 +529,7 @@ namespace laberinto
                 if(reemplazar != null)
                 {
                     por_visitar.Remove(reemplazar);
-                    reemplazar.Parent.Nodes.Remove(reemplazar);
+                    reemplazar.Remove();
                 }
             }
             else
@@ -592,6 +592,7 @@ namespace laberinto
                 if (reemplazar != null)
                 {
                     por_visitar.Remove(reemplazar);
+                    reemplazar.Remove();
                 }
             }
             else
