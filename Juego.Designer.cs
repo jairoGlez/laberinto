@@ -45,6 +45,12 @@
             this.radioButton_Manhattan = new System.Windows.Forms.RadioButton();
             this.contenedor_laberinto = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.button3 = new System.Windows.Forms.Button();
             this.boton_reiniciar = new System.Windows.Forms.Button();
             this.tabla_costos = new System.Windows.Forms.TableLayoutPanel();
@@ -54,21 +60,15 @@
             this.comboFilaD = new System.Windows.Forms.ComboBox();
             this.comboFilaO = new System.Windows.Forms.ComboBox();
             this.comboColumnaO = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tabla_costos.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.tabla_costos.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -124,6 +124,8 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(215, 21);
             this.comboBox1.TabIndex = 9;
+            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            this.comboBox1.SelectedValueChanged += new System.EventHandler(this.comboBox1_SelectedValueChanged);
             // 
             // radioButton_Euclidiana
             // 
@@ -141,7 +143,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 264);
+            this.label2.Location = new System.Drawing.Point(12, 265);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 28);
             this.label2.TabIndex = 13;
@@ -151,7 +153,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 296);
+            this.label3.Location = new System.Drawing.Point(12, 297);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(77, 28);
             this.label3.TabIndex = 14;
@@ -164,7 +166,7 @@
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(40, 364);
+            this.button1.Location = new System.Drawing.Point(40, 365);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(155, 71);
             this.button1.TabIndex = 15;
@@ -181,7 +183,7 @@
             this.groupBox1.Controls.Add(this.comboBox_Algoritmo_Busqueda);
             this.groupBox1.Controls.Add(this.radioButton_Manhattan);
             this.groupBox1.Controls.Add(this.radioButton_Euclidiana);
-            this.groupBox1.Location = new System.Drawing.Point(17, 122);
+            this.groupBox1.Location = new System.Drawing.Point(17, 123);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(215, 142);
             this.groupBox1.TabIndex = 16;
@@ -264,119 +266,21 @@
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Location = new System.Drawing.Point(544, 27);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(244, 530);
+            this.panel1.Size = new System.Drawing.Size(244, 531);
             this.panel1.TabIndex = 20;
             // 
-            // button3
+            // panel2
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button3.Location = new System.Drawing.Point(17, 96);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 24);
-            this.button3.TabIndex = 23;
-            this.button3.Text = "Guardar cambios";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.boton_guardar_costos_click);
-            // 
-            // boton_reiniciar
-            // 
-            this.boton_reiniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.boton_reiniciar.Enabled = false;
-            this.boton_reiniciar.Location = new System.Drawing.Point(40, 329);
-            this.boton_reiniciar.Name = "boton_reiniciar";
-            this.boton_reiniciar.Size = new System.Drawing.Size(155, 29);
-            this.boton_reiniciar.TabIndex = 22;
-            this.boton_reiniciar.Text = "Reiniciar";
-            this.boton_reiniciar.UseVisualStyleBackColor = true;
-            this.boton_reiniciar.Click += new System.EventHandler(this.button_reiniciar_Click);
-            // 
-            // tabla_costos
-            // 
-            this.tabla_costos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.tabla_costos.AutoSize = true;
-            this.tabla_costos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tabla_costos.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tabla_costos.ColumnCount = 2;
-            this.tabla_costos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tabla_costos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tabla_costos.Controls.Add(this.label1, 0, 0);
-            this.tabla_costos.Controls.Add(this.label4, 1, 0);
-            this.tabla_costos.Location = new System.Drawing.Point(17, 68);
-            this.tabla_costos.Name = "tabla_costos";
-            this.tabla_costos.RowCount = 1;
-            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tabla_costos.Size = new System.Drawing.Size(143, 22);
-            this.tabla_costos.TabIndex = 21;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 1);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Terreno";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(75, 1);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 20);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Costo";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // comboColumnaD
-            // 
-            this.comboColumnaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.comboColumnaD.Enabled = false;
-            this.comboColumnaD.FormattingEnabled = true;
-            this.comboColumnaD.Location = new System.Drawing.Point(89, 302);
-            this.comboColumnaD.Name = "comboColumnaD";
-            this.comboColumnaD.Size = new System.Drawing.Size(67, 21);
-            this.comboColumnaD.TabIndex = 20;
-            this.comboColumnaD.SelectedIndexChanged += new System.EventHandler(this.comboColumnaD_SelectedIndexChanged);
-            // 
-            // comboFilaD
-            // 
-            this.comboFilaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.comboFilaD.Enabled = false;
-            this.comboFilaD.FormattingEnabled = true;
-            this.comboFilaD.Location = new System.Drawing.Point(162, 302);
-            this.comboFilaD.Name = "comboFilaD";
-            this.comboFilaD.Size = new System.Drawing.Size(67, 21);
-            this.comboFilaD.TabIndex = 19;
-            this.comboFilaD.SelectedIndexChanged += new System.EventHandler(this.comboFilaD_SelectedIndexChanged);
-            // 
-            // comboFilaO
-            // 
-            this.comboFilaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.comboFilaO.Enabled = false;
-            this.comboFilaO.FormattingEnabled = true;
-            this.comboFilaO.Location = new System.Drawing.Point(162, 270);
-            this.comboFilaO.Name = "comboFilaO";
-            this.comboFilaO.Size = new System.Drawing.Size(67, 21);
-            this.comboFilaO.TabIndex = 17;
-            this.comboFilaO.SelectedIndexChanged += new System.EventHandler(this.comboFilaO_SelectedIndexChanged);
-            // 
-            // comboColumnaO
-            // 
-            this.comboColumnaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.comboColumnaO.Enabled = false;
-            this.comboColumnaO.FormattingEnabled = true;
-            this.comboColumnaO.Location = new System.Drawing.Point(89, 270);
-            this.comboColumnaO.Name = "comboColumnaO";
-            this.comboColumnaO.Size = new System.Drawing.Size(67, 21);
-            this.comboColumnaO.TabIndex = 18;
-            this.comboColumnaO.SelectedIndexChanged += new System.EventHandler(this.comboColumnaO_SelectedIndexChanged);
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.pictureBox4);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.pictureBox3);
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Location = new System.Drawing.Point(3, 438);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(238, 90);
+            this.panel2.TabIndex = 24;
             // 
             // label5
             // 
@@ -396,6 +300,15 @@
             this.pictureBox4.TabIndex = 25;
             this.pictureBox4.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(10, 33);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
             // pictureBox3
             // 
             this.pictureBox3.Location = new System.Drawing.Point(122, 33);
@@ -414,27 +327,117 @@
             this.pictureBox2.TabIndex = 23;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox1
+            // button3
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(10, 33);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 22;
-            this.pictureBox1.TabStop = false;
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button3.Location = new System.Drawing.Point(17, 97);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(96, 24);
+            this.button3.TabIndex = 23;
+            this.button3.Text = "Guardar cambios";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.boton_guardar_costos_click);
             // 
-            // panel2
+            // boton_reiniciar
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.pictureBox4);
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Location = new System.Drawing.Point(3, 437);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(238, 90);
-            this.panel2.TabIndex = 24;
+            this.boton_reiniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.boton_reiniciar.Enabled = false;
+            this.boton_reiniciar.Location = new System.Drawing.Point(40, 330);
+            this.boton_reiniciar.Name = "boton_reiniciar";
+            this.boton_reiniciar.Size = new System.Drawing.Size(155, 29);
+            this.boton_reiniciar.TabIndex = 22;
+            this.boton_reiniciar.TabStop = false;
+            this.boton_reiniciar.Text = "Reiniciar";
+            this.boton_reiniciar.UseVisualStyleBackColor = true;
+            this.boton_reiniciar.Click += new System.EventHandler(this.button_reiniciar_Click);
+            // 
+            // tabla_costos
+            // 
+            this.tabla_costos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.tabla_costos.AutoSize = true;
+            this.tabla_costos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tabla_costos.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tabla_costos.ColumnCount = 2;
+            this.tabla_costos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tabla_costos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tabla_costos.Controls.Add(this.label1, 0, 0);
+            this.tabla_costos.Controls.Add(this.label4, 1, 0);
+            this.tabla_costos.Location = new System.Drawing.Point(17, 68);
+            this.tabla_costos.Name = "tabla_costos";
+            this.tabla_costos.RowCount = 1;
+            this.tabla_costos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tabla_costos.Size = new System.Drawing.Size(143, 23);
+            this.tabla_costos.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 21);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Terreno";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(75, 1);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(51, 21);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Costo";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // comboColumnaD
+            // 
+            this.comboColumnaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboColumnaD.Enabled = false;
+            this.comboColumnaD.FormattingEnabled = true;
+            this.comboColumnaD.Location = new System.Drawing.Point(88, 303);
+            this.comboColumnaD.Name = "comboColumnaD";
+            this.comboColumnaD.Size = new System.Drawing.Size(67, 21);
+            this.comboColumnaD.TabIndex = 20;
+            this.comboColumnaD.SelectedIndexChanged += new System.EventHandler(this.comboColumnaD_SelectedIndexChanged);
+            // 
+            // comboFilaD
+            // 
+            this.comboFilaD.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboFilaD.Enabled = false;
+            this.comboFilaD.FormattingEnabled = true;
+            this.comboFilaD.Location = new System.Drawing.Point(162, 303);
+            this.comboFilaD.Name = "comboFilaD";
+            this.comboFilaD.Size = new System.Drawing.Size(67, 21);
+            this.comboFilaD.TabIndex = 19;
+            this.comboFilaD.SelectedIndexChanged += new System.EventHandler(this.comboFilaD_SelectedIndexChanged);
+            // 
+            // comboFilaO
+            // 
+            this.comboFilaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboFilaO.Enabled = false;
+            this.comboFilaO.FormattingEnabled = true;
+            this.comboFilaO.Location = new System.Drawing.Point(162, 271);
+            this.comboFilaO.Name = "comboFilaO";
+            this.comboFilaO.Size = new System.Drawing.Size(67, 21);
+            this.comboFilaO.TabIndex = 17;
+            this.comboFilaO.SelectedIndexChanged += new System.EventHandler(this.comboFilaO_SelectedIndexChanged);
+            // 
+            // comboColumnaO
+            // 
+            this.comboColumnaO.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.comboColumnaO.Enabled = false;
+            this.comboColumnaO.FormattingEnabled = true;
+            this.comboColumnaO.Location = new System.Drawing.Point(89, 271);
+            this.comboColumnaO.Name = "comboColumnaO";
+            this.comboColumnaO.Size = new System.Drawing.Size(67, 21);
+            this.comboColumnaO.TabIndex = 18;
+            this.comboColumnaO.SelectedIndexChanged += new System.EventHandler(this.comboColumnaO_SelectedIndexChanged);
             // 
             // Formulario_Juego
             // 
@@ -457,13 +460,13 @@
             this.groupBox1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabla_costos.ResumeLayout(false);
-            this.tabla_costos.PerformLayout();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.tabla_costos.ResumeLayout(false);
+            this.tabla_costos.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

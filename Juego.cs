@@ -107,6 +107,7 @@ namespace laberinto
             bloquear_controles();
             this.Focus();
             juego_iniciado = true;
+            boton_reiniciar.Enabled = true;
             visita = 2;
             verificar_victoria();
             enmascarar_todo();
@@ -208,7 +209,8 @@ namespace laberinto
             TreeNode nodo_actual = null;
             TreeNode nodo_final = null;
             var coordenada_inicial = tablero.coordenadas_inicio;
-            arbol.Text = coordenadas_a_texto_VPM(coordenada_inicial);
+            arbol.Text = coordenadas_a_texto_simple(coordenada_inicial);
+            arbol.Text += string.Format(" g(n): {0}", 0);
             arbol.Text += " Visita: 1 - Inicial";
             var coordenada_raiz = new Dictionary<string, decimal>();
             coordenada_raiz.Add("fila", coordenada_inicial["fila"]);
@@ -221,13 +223,14 @@ namespace laberinto
             var hijos = expandir_hijos_coste_uniforme(coordenada_raiz, visitados, por_visitar);
             foreach (var coordenadas_hijo in hijos)
             {
-                var nodo_hijo = new TreeNode(coordenadas_a_texto(coordenadas_hijo)) { BackColor = Color.Gray };
+                var nodo_hijo = new TreeNode(coordenadas_a_texto_simple(coordenadas_hijo)) { BackColor = Color.Gray };
                 var datos = new Dictionary<string, decimal>();
                 datos.Add("fila", coordenadas_hijo["fila"]);
                 datos.Add("columna", coordenadas_hijo["columna"]);
                 var tipo = tablero.casillaPorCoordenadas(coordenadas_hijo["fila"], coordenadas_hijo["columna"]).tipo;
                 var costo = personajes[personaje_seleccionado].costos[tipo];
                 datos.Add("acumulado", costo);
+                nodo_hijo.Text += string.Format(" g(n): {0}", costo);
                 nodo_hijo.Tag = datos;
                 arbol.Nodes.Add(nodo_hijo);
                 insertar_en_orden_coste_uniforme(nodo_hijo, por_visitar);
@@ -258,7 +261,7 @@ namespace laberinto
                     hijos = expandir_hijos_coste_uniforme(coordenadas, visitados, por_visitar);
                     foreach (var coordenadas_hijo in hijos)
                     {
-                        var nodo_hijo = new TreeNode(coordenadas_a_texto(coordenadas_hijo)) { BackColor = Color.Gray };
+                        var nodo_hijo = new TreeNode(coordenadas_a_texto_simple(coordenadas_hijo)) { BackColor = Color.Gray };
                         var datos = new Dictionary<string, decimal>();
                         datos.Add("fila", coordenadas_hijo["fila"]);
                         datos.Add("columna", coordenadas_hijo["columna"]);
@@ -266,6 +269,7 @@ namespace laberinto
                         var costo = personajes[personaje_seleccionado].costos[tipo];
                         var datos_padre = nodo_actual.Tag as Dictionary<string, decimal>;
                         datos.Add("acumulado", costo + datos_padre["acumulado"]);
+                        nodo_hijo.Text += string.Format(" g(n): {0}", datos["acumulado"]);
                         nodo_hijo.Tag = datos;
                         nodo_actual.Nodes.Add(nodo_hijo);
                         insertar_en_orden_coste_uniforme(nodo_hijo, por_visitar);
@@ -359,7 +363,9 @@ namespace laberinto
             TreeNode nodo_actual = null;
             TreeNode nodo_final = null;
             var coordenada_inicial = tablero.coordenadas_inicio;
-            arbol.Text = coordenadas_a_texto_VPM(coordenada_inicial);
+            var distancia_inicial = calcular_distancia(coordenada_inicial, tablero.coordenadas_fin);
+            arbol.Text = coordenadas_a_texto_simple(coordenada_inicial);
+            arbol.Text += string.Format(" g(n): {0}  h(n): {1}  f(n): {2}", 0, distancia_inicial, distancia_inicial);
             arbol.Text += " Visita: 1 - Inicial";
             var coordenada_raiz = new Dictionary<string, decimal>();
             coordenada_raiz.Add("fila", coordenada_inicial["fila"]);
@@ -372,16 +378,18 @@ namespace laberinto
             var hijos = expandir_hijos_coste_uniforme(coordenada_raiz, visitados, por_visitar);
             foreach (var coordenadas_hijo in hijos)
             {
-                var nodo_hijo = new TreeNode(coordenadas_a_texto(coordenadas_hijo)) { BackColor = Color.Gray };
+                var nodo_hijo = new TreeNode(coordenadas_a_texto_simple(coordenadas_hijo)) { BackColor = Color.Gray };
                 var datos = new Dictionary<string, decimal>();
                 datos.Add("fila", coordenadas_hijo["fila"]);
                 datos.Add("columna", coordenadas_hijo["columna"]);
                 var tipo = tablero.casillaPorCoordenadas(coordenadas_hijo["fila"], coordenadas_hijo["columna"]).tipo;
                 var costo = personajes[personaje_seleccionado].costos[tipo];
-                datos.Add("acumulado", costo + (decimal)calcular_distancia(coordenadas_hijo, tablero.coordenadas_fin));
+                datos.Add("acumulado", costo);
                 nodo_hijo.Tag = datos;
+                var distancia_hijo = calcular_distancia(coordenadas_hijo, tablero.coordenadas_fin);
+                nodo_hijo.Text += string.Format(" g(n): {0}  h(n): {1}  f(n): {2}", costo, distancia_hijo, (decimal)distancia_hijo + costo);
                 arbol.Nodes.Add(nodo_hijo);
-                insertar_en_orden_coste_uniforme(nodo_hijo, por_visitar);
+                insertar_en_orden_a_est(nodo_hijo, por_visitar);
             }
 
             while (por_visitar.Count > 0)
@@ -409,7 +417,7 @@ namespace laberinto
                     hijos = expandir_hijos_coste_uniforme(coordenadas, visitados, por_visitar);
                     foreach (var coordenadas_hijo in hijos)
                     {
-                        var nodo_hijo = new TreeNode(coordenadas_a_texto(coordenadas_hijo)) { BackColor = Color.Gray };
+                        var nodo_hijo = new TreeNode(coordenadas_a_texto_simple(coordenadas_hijo)) { BackColor = Color.Gray };
                         var datos = new Dictionary<string, decimal>();
                         datos.Add("fila", coordenadas_hijo["fila"]);
                         datos.Add("columna", coordenadas_hijo["columna"]);
@@ -418,11 +426,10 @@ namespace laberinto
                         var datos_padre = nodo_actual.Tag as Dictionary<string, decimal>;
                         datos.Add("acumulado", costo + datos_padre["acumulado"]);
                         var distancia = calcular_distancia(coordenadas_hijo, tablero.coordenadas_fin);
-                        nodo_hijo.Text += string.Format(" g(n): {0}, h(n): {1}, f(n): {2}", datos["acumulado"], distancia, (decimal)distancia + datos["acumulado"]);
-                        datos["acumulado"] += (decimal)distancia;
+                        nodo_hijo.Text += string.Format(" g(n): {0}  h(n): {1}  f(n): {2}", datos["acumulado"], distancia, (decimal)distancia + datos["acumulado"]);
                         nodo_hijo.Tag = datos;
                         nodo_actual.Nodes.Add(nodo_hijo);
-                        insertar_en_orden_coste_uniforme(nodo_hijo, por_visitar);
+                        insertar_en_orden_a_est(nodo_hijo, por_visitar);
 
                     }
                     tabla.Refresh();
@@ -451,6 +458,7 @@ namespace laberinto
                 ruta.Add(nodo.Tag as Dictionary<string, int>);
                 nodo = nodo.Parent;
             }
+            nodo_final.BackColor = Color.Gold;
             ruta.Add(nodo.Tag as Dictionary<string, int>);
             return ruta;
         }
@@ -475,9 +483,9 @@ namespace laberinto
             aux_2["fila"] = (int)aux["fila"];
             aux_2["columna"] = (int)aux["columna"];
             ruta.Add(aux_2);
+            nodo_final.BackColor = Color.Gold;
             return ruta;
         }
-
         private void insertar_en_orden_coste_uniforme(TreeNode hijo, List<TreeNode> por_visitar)
         {
             int posicion = 0;
@@ -499,7 +507,7 @@ namespace laberinto
             {
                 var datos = nodo.Tag as Dictionary<string, decimal>;
 
-                if (datos_hijo["fila"] == datos["fila"] && datos["columna"] == datos["columna"])
+                if (datos_hijo["fila"] == datos["fila"] && datos_hijo["columna"] == datos["columna"])
                 {
                     if (datos_hijo["acumulado"] < datos["acumulado"])
                     {
@@ -509,6 +517,7 @@ namespace laberinto
                     else
                     {
                         es_mejor = false;
+                        break;
                     }
                     
                 }
@@ -520,7 +529,74 @@ namespace laberinto
                 if(reemplazar != null)
                 {
                     por_visitar.Remove(reemplazar);
+                    reemplazar.Parent.Nodes.Remove(reemplazar);
                 }
+            }
+            else
+            {
+                hijo.Remove();
+            }
+
+        }
+        private void insertar_en_orden_a_est(TreeNode hijo, List<TreeNode> por_visitar)
+        {
+            int posicion = 0;
+            bool es_mejor = true;
+            TreeNode reemplazar = null;
+            var dict = hijo.Tag as Dictionary<string, decimal>;
+            var aux = new Dictionary<string, int>();
+            aux["fila"] = (int)dict["fila"];
+            aux["columna"] = (int)dict["columna"];
+
+            var costo = dict["acumulado"];
+            var distancia = (decimal)calcular_distancia(aux, tablero.coordenadas_fin);
+            decimal valor = costo + distancia;
+
+            foreach (var nodo in por_visitar)
+            {
+                aux["fila"] = (int)(nodo.Tag as Dictionary<string, decimal>)["fila"];
+                aux["columna"] = (int)(nodo.Tag as Dictionary<string, decimal>)["columna"];
+                var costo_nodo = (nodo.Tag as Dictionary<string, decimal>)["acumulado"];
+                var distancia_nodo = (decimal)calcular_distancia(aux, tablero.coordenadas_fin);
+                var valor_nodo = costo_nodo + distancia_nodo;
+                if (valor < valor_nodo)
+                {
+                    break;
+                }
+                posicion++;
+            }
+
+            foreach (var nodo in por_visitar)
+            {
+                var datos = nodo.Tag as Dictionary<string, decimal>;
+
+                if (dict["fila"] == datos["fila"] && dict["columna"] == datos["columna"])
+                {
+                    if (dict["acumulado"] < datos["acumulado"])
+                    {
+                        reemplazar = nodo;
+                        break;
+                    }
+                    else
+                    {
+                        es_mejor = false;
+                        break;
+                    }
+
+                }
+
+            }
+            if (es_mejor)
+            {
+                por_visitar.Insert(posicion, hijo);
+                if (reemplazar != null)
+                {
+                    por_visitar.Remove(reemplazar);
+                }
+            }
+            else
+            {
+                hijo.Remove();
             }
 
         }
@@ -558,7 +634,12 @@ namespace laberinto
         private string coordenadas_a_texto_VPM(Dictionary<string, int> coordenadas)
         {
             var costo = calcular_distancia(coordenadas, tablero.coordenadas_fin);
-            var texto = string.Format("({0}, {1}) f(h): {2}", char.ConvertFromUtf32(65 + coordenadas["columna"]), coordenadas["fila"] + 1, costo);
+            var texto = string.Format("({0}, {1}) h(n): {2}", char.ConvertFromUtf32(65 + coordenadas["columna"]), coordenadas["fila"] + 1, costo);
+            return texto;
+        }
+        private string coordenadas_a_texto_simple(Dictionary<string, int> coordenadas)
+        {
+            var texto = string.Format("({0}, {1})", char.ConvertFromUtf32(65 + coordenadas["columna"]), coordenadas["fila"] + 1);
             return texto;
         }
         bool buscar_en_nodo(Dictionary<string, int> coordenadas, TreeNode arbol, List<Dictionary<string, int>> coordenadas_ya_enlistadas, List<Dictionary<string, int>> ruta)
@@ -776,30 +857,45 @@ namespace laberinto
         }
         private void bloquear_controles()
         {
-            var controles = panel1.Controls;
+            var controles = new List<Control>();
+            controles.Add(comboBox_Algoritmo_Busqueda);
+            controles.Add(comboBox1);
+            controles.Add(comboColumnaD);
+            controles.Add(comboColumnaO);
+            controles.Add(comboFilaO);
+            controles.Add(comboFilaD);
+            //controles.Add(boton_reiniciar);
+            controles.Add(button1);
+            controles.Add(button3);
+            controles.Add(radioButton_Euclidiana);
+            controles.Add(radioButton_Manhattan);
+            controles.Add(tabla_costos);
             foreach (var c in controles)
             {
-                (c as Control).Enabled = false;
+                c.Enabled = false;
             }
-            var combos = panel1.Controls.OfType<ComboBox>();
+            /*var combos = panel1.Controls.OfType<ComboBox>();
             foreach (ComboBox c in combos)
             {
                 c.SelectedIndex = -1;
-            }
+            }*/
         }
         private void desbloquear_controles()
         {
-            comboBox1.Enabled = true;
-            groupBox1.Enabled = true;
-            tabla_costos.Enabled = true;
-            button3.Enabled = true;
-            var radios = groupBox1.Controls;
-            foreach(Control c in radios)
-            {
-                c.Enabled = true;
-            }
-            var costos = tabla_costos.Controls;
-            foreach(Control c in costos)
+            var controles = new List<Control>();
+            controles.Add(comboBox_Algoritmo_Busqueda);
+            controles.Add(comboBox1);
+            controles.Add(comboColumnaD);
+            controles.Add(comboColumnaO);
+            controles.Add(comboFilaO);
+            controles.Add(comboFilaD);
+            //controles.Add(boton_reiniciar);
+            controles.Add(button1);
+            controles.Add(button3);
+            controles.Add(radioButton_Euclidiana);
+            controles.Add(radioButton_Manhattan);
+            controles.Add(tabla_costos);
+            foreach (var c in controles)
             {
                 c.Enabled = true;
             }
@@ -1104,7 +1200,7 @@ namespace laberinto
         }
         private bool hay_personaje_dibujado()
         {
-            return tablero.coordenadas_personaje["fila"] != -1;
+            return (tablero.coordenadas_personaje["fila"] != -1 && tablero.coordenadas_personaje["columna"] != -1);
         }
         private void comboFilaD_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1170,7 +1266,9 @@ namespace laberinto
         }
         private bool hay_meta_dibujada()
         {
-            return tablero.coordenadas_fin["fila"] != -1;
+            bool resultado;
+            resultado = (tablero.coordenadas_fin["fila"] != -1 && tablero.coordenadas_fin["columna"] != -1);
+            return resultado;
         }
         private void mover_personaje(Dictionary<string, int> coordenada_nueva)
         {
@@ -1336,13 +1434,17 @@ namespace laberinto
         private void button_reiniciar_Click(object sender, EventArgs e)
         {
             reiniciar_laberinto();
+            tablero.coordenadas_personaje["fila"] = tablero.coordenadas_inicio["fila"];
+            tablero.coordenadas_personaje["columna"] = tablero.coordenadas_inicio["columna"];
+            if (hay_meta_dibujada())
+            {
+                dibujar_meta(tablero.coordenadas_fin["fila"], tablero.coordenadas_fin["columna"]);
+            }
+            if(hay_personaje_dibujado())
+            {
+                dibujar_inicio(tablero.coordenadas_inicio["fila"], tablero.coordenadas_inicio["columna"]);
+            }
             desbloquear_controles();
-            tablero.coordenadas_fin["fila"] = -1;
-            tablero.coordenadas_fin["columna"] = -1;
-            tablero.coordenadas_inicio["fila"] = -1;
-            tablero.coordenadas_inicio["columna"] = -1;
-            tablero.coordenadas_personaje["fila"] = -1;
-            tablero.coordenadas_personaje["columna"] = -1;
             desenmascarar_todo();
         }
         private void boton_guardar_costos_click(object sender, EventArgs e)
@@ -1368,5 +1470,19 @@ namespace laberinto
             pictureBox4.Refresh();
         }
 
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (hay_personaje_dibujado())
+            {
+                var personaje = personajes[personaje_seleccionado];
+                var casilla = tabla.GetControlFromPosition(tablero.coordenadas_inicio["columna"] + 1, tablero.coordenadas_inicio["fila"] + 1) as Label;
+                casilla.Image = personaje.imagen;
+            }
+        }
     }
 }

@@ -54,6 +54,7 @@ namespace laberinto
             if (codigos_asignados == null) return;
             foreach(KeyValuePair<string, Textura>asignacion in codigos_asignados)
             {
+                if (asignacion.Value == null) return;
                 costos.Add(asignacion.Key, costos_default[asignacion.Value.nombre]);
             }
         }
