@@ -592,6 +592,7 @@ namespace laberinto
                 if (reemplazar != null)
                 {
                     por_visitar.Remove(reemplazar);
+                    reemplazar.Remove();
                 }
             }
             else
